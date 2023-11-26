@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 
 const Banner = () => {
+    const {user} = useAuth();
     return (
         <div className="flex flex-col justify-center items-center mt-10 space-y-5">
             <h2 className="text-3xl font-semibold px-2 text-center">Our mission is to save as many life as possible</h2>
