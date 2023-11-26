@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 
 // will have logo, donation requests, blog, login, registration link before logged
 // in. and will have dashboard, and fundings links addition to those links.
+
+import './Navbar.css';
 const Navbar = () => {
     const navLinks = <>
     <li><NavLink to='/'>Home</NavLink></li>
@@ -13,7 +15,7 @@ const Navbar = () => {
     <li><NavLink to='/funding'>Fundings</NavLink></li>
     </>
     return (
-        <div className="navbar bg-white">
+        <div className="navbar bg-white text-red-600 font-semibold">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
