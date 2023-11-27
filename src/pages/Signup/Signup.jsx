@@ -6,8 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY ;
-
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
@@ -79,43 +78,56 @@ const Signup = () => {
 
       // signup user
 
-      signup(email, password).then(async () => {
-        // console.log(result.user);
-        updateUser(name, avatarImage);
-        const userData = {
-          name,
-          email,
-          avatarImage,
-          bloodGroup,
-          upazila,
-          district,
-          status,
-          role,
-        };
+      signup(email, password)
+        .then(async () => {
+          // console.log(result.user);
+          updateUser(name, avatarImage);
+          const userData = {
+            name,
+            email,
+            avatarImage,
+            bloodGroup,
+            upazila,
+            district,
+            status,
+            role,
+          };
 
-        const res = await axiosPublic.post("/user", userData);
-        // console.log(res.data);
+          const res = await axiosPublic.post("/user", userData);
+          // console.log(res.data);
 
-        if (res.data.insertedId) {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Registration successful",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            navigate("/");
+          }
+        })
+        .catch(() => {
+          // console.log(error);
+       
           Swal.fire({
             position: "center",
-            icon: "success",
-            title: "Registration successful",
+            icon: "error",
+            title: "This email is registered with another account",
             showConfirmButton: false,
             timer: 2000,
           });
-          navigate("/");
-        }
-      }).catch(error=>{
-        console.log(error)
-      });
+       
+        });
     }
   };
 
   return (
     <div className="mb-10 bg-red-500 shadow-lg">
       <div className="p-4">
-        <h3 className="text-xl lg:text-3xl mb-4 text-center font-bold text-white">Join us and help us to save lives</h3>
+        <h3 className="text-xl lg:text-3xl mb-4 text-center font-bold text-white">
+          Join us and help us to save lives
+        </h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <p className="text-sm font-semibold mb-2 text-white">Name*</p>
           <input
@@ -217,7 +229,12 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
-        <p className="text-white font-semibold text-xl text-center">Already Have an account ? <Link to='/login'><span className="hover:text-blue-500">Log in here</span></Link></p>
+        <p className="text-white font-semibold text-xl text-center">
+          Already Have an account ?{" "}
+          <Link to="/login">
+            <span className="hover:text-blue-500">Log in here</span>
+          </Link>
+        </p>
       </div>
     </div>
   );
