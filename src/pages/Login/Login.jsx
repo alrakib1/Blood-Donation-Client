@@ -1,9 +1,14 @@
+import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
 
     const { login } = useAuth();
+
+  const navigate = useNavigate();
+
     const handleLogin = (e) => {
       e.preventDefault();
   
@@ -11,19 +16,34 @@ const Login = () => {
       const password = e.target.password.value;
       login(email, password).then((result) => {
         console.log(result.user);
+
+        if(result.user){
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Login successful",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          navigate("/");
+        }
+      }).catch(error=>{
+        console.log(error)
       });
     };
 
 
     return (
-        <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left"></div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body" onSubmit={handleLogin}>
+      
+       
+        
+           <div className="h-[75vh] flex justify-center mb-10 items-center bg-red-500">
+            <div className="w-full">
+            <h3 className="text-center text-white text-2xl font-bold">Login Here</h3>
+             <form className="card-body" onSubmit={handleLogin}>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white">Email</span>
                 </label>
                 <input
                   type="email"
@@ -35,7 +55,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white">Password</span>
                 </label>
                 <input
                   name="password"
@@ -50,13 +70,15 @@ const Login = () => {
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">Login</button>
+              <div className="form-control mt-6 w-1/4 mx-auto">
+                <button type="submit" className="btn bg-white text-red-500 hover:bg-blue-500 hover:text-white border-0">Login</button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
+            </div>
+           </div>
+          
+      
+    
     );
 };
 

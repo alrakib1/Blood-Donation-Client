@@ -113,29 +113,30 @@ const Signup = () => {
   };
 
   return (
-    <div className="mb-10 bg-red-400 shadow-lg">
+    <div className="mb-10 bg-red-500 shadow-lg">
       <div className="p-4">
+        <h3 className="text-xl lg:text-3xl mb-4 text-center font-bold text-white">Join us and help us to save lives</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <p className="text-sm font-semibold mb-2 text-white">Name*</p>
           <input
             {...register("name", { required: true })}
             type="text"
             placeholder="Your Name"
-            className="input input-bordered w-1/2"
+            className="input input-bordered md:w-1/2"
           />
           <p className="text-sm font-semibold mt-5 mb-2 text-white">Email</p>
           <input
             {...register("email", { required: true })}
             type="text"
             placeholder="Your Email Address"
-            className="input input-bordered w-1/2"
+            className="input input-bordered md:w-1/2"
           />
 
           <p className="text-sm font-semibold mt-5 mb-2 text-white">Password</p>
           <input
             {...register("password", { required: true })}
             type="password"
-            className="input input-bordered w-1/2"
+            className="input input-bordered md:w-1/2"
           />
           <p className="text-sm font-semibold mt-5 mb-2 text-white">
             Confirm Password
@@ -143,7 +144,7 @@ const Signup = () => {
           <input
             {...register("confirm", { required: true })}
             type="password"
-            className="input input-bordered w-1/2"
+            className="input input-bordered md:w-1/2"
           />
 
           <p className="text-sm font-semibold mt-5 mb-2 text-white">
@@ -156,7 +157,7 @@ const Signup = () => {
             className="file-input border-0 file-input-bordered file-input-sm w-full mb-4 max-w-xs"
           />
           <div className="flex gap-10 my-5">
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <p className="text-sm font-semibold mb-2 text-white">
                 Blood Group*
               </p>
@@ -179,8 +180,8 @@ const Signup = () => {
               </select>
             </div>
           </div>
-          <div className="flex gap-5">
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row gap-5">
+            <div className="md:w-1/2">
               <p className="text-sm font-semibold mb-2 text-white">Upazila*</p>
               <select
                 {...register("upazila", { required: true })}
@@ -193,7 +194,7 @@ const Signup = () => {
                 ))}
               </select>
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <p className="text-sm font-semibold mb-2 text-white">District*</p>
               <select
                 {...register("district", { required: true })}
@@ -211,7 +212,7 @@ const Signup = () => {
           <br />
           <button
             type="submit"
-            className="text-white btn bg-red-500 border-0 hover:bg-green-500"
+            className="text-red-500 shadow-lg btn bg-white border-0 mb-5 hover:bg-blue-500 hover:text-white"
           >
             Sign Up
           </button>
