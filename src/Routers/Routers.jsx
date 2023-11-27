@@ -19,7 +19,7 @@ import Login from "../pages/Login/Login";
             },
             {
                 path: '/signup',
-                element: <Signup></Signup>
+                element: <Signup></Signup>,
             },
             {
                 path: '/login',

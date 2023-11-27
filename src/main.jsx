@@ -1,20 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Routers from "./Routers/Routers";
 
-import './index.css'
+import { RouterProvider } from "react-router-dom";
+import AuthProvider from "./Providers/AuthProvider";
 
-import {
-  RouterProvider,
-} from "react-router-dom";
-import Routers from './Routers/Routers';
-import AuthProvider from './Providers/AuthProvider';
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
- <div className='container mx-auto'>
-   <React.StrictMode>
-  <AuthProvider>
-  <RouterProvider router={Routers} />
-  </AuthProvider>
+const queryClient = new QueryClient();
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="max-w-screen-xl mx-auto">
+          <RouterProvider router={Routers} />
+        </div>
+      </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>
- </div>,
-)
+);
