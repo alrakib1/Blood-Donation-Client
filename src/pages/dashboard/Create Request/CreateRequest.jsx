@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useArea from "../../../hooks/useArea";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const CreateRequest = () => {
   const { user } = useAuth();
@@ -60,6 +61,9 @@ const CreateRequest = () => {
 
   return (
     <div>
+      <Helmet>
+      <title>Blood Donation | Create</title>
+    </Helmet>
       <section>
         <div className="bg-blue-500 shadow-lg">
           <div className="p-4">

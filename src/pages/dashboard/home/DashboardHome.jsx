@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUserRequests from "../../../hooks/useUserRequests";
+import { Helmet } from "react-helmet";
 
 const DashboardHome = () => {
   const { user } = useAuth();
@@ -47,6 +48,7 @@ const DashboardHome = () => {
 
   return (
     <div>
+      <Helmet><title>Blood Donation | Dashboard</title></Helmet>
       <h1 className="text-2xl font-semibold">Welcome {user?.displayName}</h1>
 
       {selectedRequests.length !== 0 ? (
@@ -96,11 +98,26 @@ const DashboardHome = () => {
                         </div>
                       )}
                     </td>
+                    <td>
+                      {request?.donationStatus === "inprogress" && (
+                        <div className="">
+                        Donor {request.requester},{request.requesterEmail}
+                        </div>
+                      )}
+                    </td>
                     <td className="flex gap-3">
                       <Link to={`update/${request._id}`}>
                         {" "}
                         <button className="btn btn-xs">Edit</button>
                       </Link>
+                      <Link to={`/dashboard/details/${request._id}`}>
+                 <button
+                   
+                   className="btn btn-xs"
+                 >
+                   view
+                 </button>
+                 </Link>
                       <button
                         onClick={() => handleDelete(request._id)}
                         className="btn btn-xs"
@@ -117,6 +134,9 @@ const DashboardHome = () => {
       ) : (
         <h1 className="text-2xl mt-5 ">You haven't created any request yet</h1>
       )}
+     <div className="text-center mt-10">
+     <Link to='/dashboard/my-donation-requests'><button className="btn-outline btn btn-sm mt-5">View All Request</button></Link>
+     </div>
     </div>
   );
 };

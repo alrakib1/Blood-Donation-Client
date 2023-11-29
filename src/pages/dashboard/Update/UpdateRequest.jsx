@@ -1,9 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useArea from "../../../hooks/useArea";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useParticularRequest from "../../../hooks/useParticularRequest";
+import { Helmet } from "react-helmet";
 
 const UpdateRequest = () => {
   const params = useParams();
@@ -11,15 +13,8 @@ const UpdateRequest = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const { districts, upazilas } = useArea();
+  const {requests,refetch} = useParticularRequest();
 
-  const { data: requests = {},refetch } = useQuery({
-    queryKey: ["requests", params.id],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/request/${params.id}`);
-      return res.data;
-    },
-  });
-  // console.log(requests)
 
   const onSubmit = async (data) => {
 
@@ -63,6 +58,9 @@ const UpdateRequest = () => {
 
   return (
     <div>
+      <Helmet>
+      <title>Blood Donation | Update</title>
+    </Helmet>
       <section>
         <div className="bg-violet-500 shadow-lg">
           <div className="p-4">

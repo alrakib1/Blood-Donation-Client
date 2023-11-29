@@ -14,7 +14,7 @@ const useUserRequests = () => {
             return res.data;
         }
     })
-    const sortedRequest =requests.sort((a, b) => new Date(b.requestTime) - new Date(a.requestTime));
+    const sortedRequest = requests.sort((a, b) => new Date(b.requestTime) - new Date(a.requestTime));
    
 
     return {requests,sortedRequest,refetch}

@@ -67,7 +67,7 @@ function Dashboard(props) {
             </Link>
           </div>
           <div>
-            <Link to=" /dashboard/my-donation-requests">
+            <Link to="/dashboard/my-donation-requests">
               <ListItem disablePadding>
                 <ListItemButton>
                   <div>
@@ -100,22 +100,11 @@ function Dashboard(props) {
 
       <Divider />
 
-      {/* <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
+      
       <List className="text-center">
         <Link to="/">
           {" "}
-          <button className="btn text-center ">Go Back to home</button>
+          <button className="btn text-center btn-sm ">Go Back to home</button>
         </Link>
       </List>
     </div>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useArea from "../../hooks/useArea";
+import { Helmet } from "react-helmet";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -12,6 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const Signup = () => {
 
+const {user}=useAuth();
 
   const {districts,upazilas} = useArea();
 
@@ -109,7 +111,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="mb-10 bg-red-500 shadow-lg">
+   <div>
+    <Helmet>
+      <title>Blood Donation | Signup</title>
+    </Helmet>
+    <div>
+    {
+      user ? <div className="h-screen flex flex-col gap-8 justify-center items-center text-2xl font-semibold"><h1>You are already a valid user. please go back.
+        
+        </h1>
+       
+       <Link to='/'> <button className="btn btn-outline">Go back to home</button></Link>
+        </div> : <div className="mb-10 bg-red-500 shadow-lg">
       <div className="p-4">
         <h3 className="text-xl lg:text-3xl mb-4 text-center font-bold text-white">
           Join us and help us to save lives
@@ -223,6 +236,10 @@ const Signup = () => {
         </p>
       </div>
     </div>
+    }
+    </div>
+    
+   </div>
   );
 };
 

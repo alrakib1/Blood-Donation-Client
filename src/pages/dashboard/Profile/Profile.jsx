@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import useArea from "../../../hooks/useArea";
+import { Helmet } from "react-helmet";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -85,6 +86,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Helmet><title>Blood Donation | Profile</title></Helmet>
       <div>
         {currentUser.map((cUser) => (
           <div key={cUser._id}>
