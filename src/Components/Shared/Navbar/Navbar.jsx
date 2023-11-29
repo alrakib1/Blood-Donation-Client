@@ -83,7 +83,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <a onClick={()=>logout()} className="btn">Logout</a>
+        {
+          user && <a onClick={()=>logout()} className="btn">Logout</a>
+        }
       </div>
     </div>
   );

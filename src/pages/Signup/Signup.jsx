@@ -1,33 +1,19 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useArea from "../../hooks/useArea";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Signup = () => {
-  // district and upazila data load from server
 
-  const { data: districts = [] } = useQuery({
-    queryKey: ["districts"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/districts");
-      return res.data;
-    },
-  });
 
-  const { data: upazilas = [] } = useQuery({
-    queryKey: ["upazilas"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/upazilas");
-      return res.data;
-    },
-  });
+  const {districts,upazilas} = useArea();
 
   // hooks
 
