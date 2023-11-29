@@ -94,38 +94,38 @@ const Profile = () => {
   return (
     <div>
       <div>
-        {currentUser.map((user) => (
-          <div key={user._id}>
+        {currentUser.map((cUser) => (
+          <div key={cUser._id}>
             <div className="flex flex-col md:flex-row gap-10">
               <div>
                 <img
-                  src={user.avatarImage}
+                  src={cUser.avatarImage || user.photoURL}
                   alt="Avatar"
                   style={{ maxWidth: "150px" }}
                 />
               </div>
               <div className="pt-5">
-                <h2 className="text-2xl font-semibold">Name: {user.name}</h2>
-                <p className="text-xl font-semibold">Email: {user.email}</p>
+                <h2 className="text-2xl font-semibold">Name: {cUser.name || user.displayName}</h2>
+                <p className="text-xl font-semibold">Email: {cUser.email}</p>
                 <p className="text-red-400 font-semibold">
-                  Blood Group: {user.bloodGroup}
+                  Blood Group: {cUser.bloodGroup}
                 </p>
-                <p className="font-semibold">Upazila: {user.upazila}</p>
-                <p className="font-semibold">District: {user.district}</p>
+                <p className="font-semibold">Upazila: {cUser.upazila}</p>
+                <p className="font-semibold">District: {cUser.district}</p>
                 <p className="font-semibold">
                   Status:{" "}
                   <span
                     style={
-                      user.status === "active"
+                      cUser.status === "active"
                         ? { color: "green" }
                         : { color: "red" }
                     }
                   >
                     {" "}
-                    {user.status}
+                    {cUser.status}
                   </span>
                 </p>
-                <p className="font-semibold">Role: {user.role}</p>
+                <p className="font-semibold">Role: {cUser.role}</p>
               </div>
             </div>
           </div>

@@ -1,22 +1,25 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import AddHomeIcon from '@mui/icons-material/AddHome';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import AddHomeIcon from "@mui/icons-material/AddHome";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import * as React from "react";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { Link, Outlet } from "react-router-dom";
+import { VscGitPullRequestGoToChanges } from "react-icons/vsc"
+import { FaRegPenToSquare } from "react-icons/fa6";
 
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Link, Outlet } from 'react-router-dom';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
 
 const drawerWidth = 240;
 
@@ -32,23 +35,71 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
+      {/* list of section on dashboard */}
       <List>
-        {['Home','Profile', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton component={Link} to={`/dashboard/${text.toLowerCase()}`}>
-            <ListItemIcon>
-                {/* {index % 2 === 0 ? < AccountCircleIcon /> : <MailIcon />} */}
-                { index === 0 && <AddHomeIcon />  }
-                { index === 1 && < AccountCircleIcon />  }
-                { index === 2 && < AccountCircleIcon />  }
-                { index === 3 && < AccountCircleIcon />  }
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <div>
+          <div>
+            <Link to="/dashboard">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      <AddHomeIcon />
+                    </ListItemIcon>
+                  </div>
+                  <h1>Dashboard Home</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
+          <div>
+            <Link to="/dashboard/profile">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      <PersonPinIcon />
+                    </ListItemIcon>
+                  </div>
+                  <h1>Profile</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
+          <div>
+            <Link to=" /dashboard/my-donation-requests">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      < FaRegPenToSquare className="text-xl"/>
+                    </ListItemIcon>
+                  </div>
+                  <h1>My Requests</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
+          <div>
+            <Link to="/dashboard/create-donation-request">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      <VscGitPullRequestGoToChanges className="text-xl" />
+                    </ListItemIcon>
+                  </div>
+                  <h1>Create Request</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
+        </div>
       </List>
       <Divider />
+
+      <Divider />
+
       {/* <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -61,17 +112,21 @@ function Dashboard(props) {
           </ListItem>
         ))}
       </List> */}
-      <List className='text-center'>
-     <Link to='/'>   <button className='btn text-center '>Go Back to home</button></Link>
+      <List className="text-center">
+        <Link to="/">
+          {" "}
+          <button className="btn text-center ">Go Back to home</button>
+        </Link>
       </List>
     </div>
   );
 
   // Remove this const when copying and pasting into your project.
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -80,18 +135,18 @@ function Dashboard(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar className='bg-red-500'>
+        <Toolbar className="bg-red-500">
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography  variant="h6" noWrap component="div">
-           Blood Donation
+          <Typography variant="h6" noWrap component="div">
+            Blood Donation
           </Typography>
         </Toolbar>
       </AppBar>
@@ -110,8 +165,11 @@ function Dashboard(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
@@ -119,8 +177,11 @@ function Dashboard(props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
           open
         >
@@ -129,7 +190,11 @@ function Dashboard(props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
       >
         <Toolbar />
         <Outlet></Outlet>
@@ -137,7 +202,5 @@ function Dashboard(props) {
     </Box>
   );
 }
-
-
 
 export default Dashboard;

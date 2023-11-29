@@ -9,6 +9,7 @@ import Login from "../pages/Login/Login";
 import Dashboard from "../layout/Dashboard";
 import DashboardHome from "../pages/dashboard/home/DashboardHome";
 import Profile from "../pages/dashboard/Profile/Profile";
+import CreateRequest from "../pages/dashboard/Create Request/CreateRequest";
 
 
     const Routers = createBrowserRouter([
@@ -35,13 +36,21 @@ import Profile from "../pages/dashboard/Profile/Profile";
           element: <Dashboard></Dashboard>,
           children:[
             {
-              path:'/dashboard/home',
+              path:'/dashboard',
               element:<DashboardHome></DashboardHome>
             },
             {
               path:'/dashboard/profile',
               element:<Profile></Profile>
+            },
+            {
+              path: ' /dashboard/my-donation-requests'
+            },
+            {
+              path: '/dashboard/create-donation-request',
+              element: <CreateRequest></CreateRequest>
             }
+
           ]
         }
       ]);
