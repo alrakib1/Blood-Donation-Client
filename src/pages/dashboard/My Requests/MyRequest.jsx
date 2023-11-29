@@ -1,20 +1,59 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import useUserRequests from "../../../hooks/useUserRequests";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useUserRequests from "../../../hooks/useUserRequests";
 
 const MyRequest = () => {
   const [status, setStatus] = useState("");
-  const { requests } = useUserRequests();
+  const { requests, refetch } = useUserRequests();
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
-  const handleCancel = () => {
+  const handleCancel = (id) => {
     //
+    console.log(id);
   };
-  const handleDelete = () => {
-    //
+
+  const handleDone = async (id) => {
+    console.log("done btn clicked");
+    const data = {
+      donationStatus: "done",
+    };
+    const res = await axiosPublic.patch(`/done/${id}`, data);
+    console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
   };
-  const handleDone = () => {
-    //
+
+  const handleDelete = (id) => {
+    console.log("delete this", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const rest = await axiosPublic.delete(`/request/${id}`);
+
+        if (rest.data.deletedCount > 0) {
+          // console
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch();
+        }
+      }
+    });
   };
 
   const filteredRequest = requests.filter(
@@ -26,8 +65,8 @@ const MyRequest = () => {
   return (
     <div>
       <Helmet>
-      <title>Blood Donation | My Requests</title>
-    </Helmet>
+        <title>Blood Donation | My Requests</title>
+      </Helmet>
       <div className="mb-10">
         <select
           value={status}
@@ -53,7 +92,8 @@ const MyRequest = () => {
               <th>Donation Date</th>
               <th>Donation Time</th>
               <th>Donation Status</th>
-              <th></th>
+              <th>Donor Name</th>
+              <th>Donor Email</th>
             </tr>
           </thead>
           <tbody>
@@ -69,38 +109,55 @@ const MyRequest = () => {
                 <td>{request.donationTime}</td>
                 <td>{request.donationStatus}</td>
                 <td>
+                  {request?.donationStatus === "inprogress" ? (
+                    <>{request.donorName}</>
+                  ) : (
+                    <>None</>
+                  )}
+                </td>
+                <td>
+                  {request?.donationStatus === "inprogress" ? (
+                    <>{request.donorEmail}</>
+                  ) : (
+                    <>None</>
+                  )}
+                </td>
+                <td>
                   {request?.donationStatus === "inprogress" && (
                     <div className="flex gap-5">
-                      <button onClick={handleDone} className="btn btn-xs">
+                      <button
+                        onClick={() => handleDone(request._id)}
+                        className="btn btn-xs"
+                      >
                         Done
                       </button>
-                      <button onClick={handleCancel} className="btn btn-xs ">
+                      <button
+                        onClick={() => handleCancel(request._id)}
+                        className="btn btn-xs "
+                      >
                         Cancel
                       </button>
                     </div>
                   )}
                 </td>
-                <td>
-                  {request?.donationStatus === "inprogress" && (
-                    <div className="">
-                      Donor {request.requester},{request.requesterEmail}
-                    </div>
-                  )}
-                </td>
                 <td className="flex gap-3">
-                  <Link to={`/dashboard/update/${request._id}`}>
-                    {" "}
-                    <button className="btn btn-xs">Edit</button>
-                  </Link>
+                  {request?.requesterEmail === user?.email && (
+                    <Link to={`/dashboard/update/${request._id}`}>
+                      {" "}
+                      <button className="btn btn-xs">Edit</button>
+                    </Link>
+                  )}
                   <Link to={`/dashboard/details/${request._id}`}>
                     <button className="btn btn-xs">view</button>
                   </Link>
-                  <button
-                    onClick={() => handleDelete(request._id)}
-                    className="btn btn-xs"
-                  >
-                    delete
-                  </button>
+                  {request?.requesterEmail === user?.email && (
+                    <button
+                      onClick={() => handleDelete(request._id)}
+                      className="btn btn-xs"
+                    >
+                      delete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

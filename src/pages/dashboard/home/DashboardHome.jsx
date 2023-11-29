@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUserRequests from "../../../hooks/useUserRequests";
-import { Helmet } from "react-helmet";
 
 const DashboardHome = () => {
   const { user } = useAuth();
@@ -12,11 +12,17 @@ const DashboardHome = () => {
   const { sortedRequest, refetch } = useUserRequests();
   const selectedRequests = sortedRequest.slice(0, 3);
 
-  const handleDone = () => {
+  const handleDone = async(id) => {
     console.log("done btn clicked");
+    const data = {
+      donationStatus : 'done'
+    }
+    const res = await axiosPublic.patch(`/done/${id}`,data);
+    console.log(res.data)
+
   };
-  const handleCancel = () => {
-    console.log("cancel btn clicked");
+  const handleCancel = (id) => {
+    console.log("cancel btn clicked",id);
   };
 
   const handleDelete = (id) => {
@@ -48,7 +54,9 @@ const DashboardHome = () => {
 
   return (
     <div>
-      <Helmet><title>Blood Donation | Dashboard</title></Helmet>
+      <Helmet>
+        <title>Blood Donation | Dashboard</title>
+      </Helmet>
       <h1 className="text-2xl font-semibold">Welcome {user?.displayName}</h1>
 
       {selectedRequests.length !== 0 ? (
@@ -64,11 +72,11 @@ const DashboardHome = () => {
                   <th> Recipient Name</th>
                   <th>Require Blood Group</th>
                   <th> Location</th>
-
                   <th>Donation Date</th>
                   <th>Donation Time</th>
                   <th>Donation Status</th>
-                  <th></th>
+                  <th>Donor Name</th>
+                  <th>Donor Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,13 +92,27 @@ const DashboardHome = () => {
                     <td>{request.donationTime}</td>
                     <td>{request.donationStatus}</td>
                     <td>
+                      {request?.donationStatus === "inprogress" ? (
+                        <>{request.donorName}</>
+                      ) : (
+                        <>None</>
+                      )}
+                    </td>
+                    <td>
+                      {request?.donationStatus === "inprogress" ? (
+                        <>{request.donorEmail}</>
+                      ) : (
+                        <>None</>
+                      )}
+                    </td>
+                    <td>
                       {request?.donationStatus === "inprogress" && (
                         <div className="flex gap-5">
-                          <button onClick={handleDone} className="btn btn-xs">
+                          <button onClick={()=>handleDone(request._id)} className="btn btn-xs">
                             Done
                           </button>
                           <button
-                            onClick={handleCancel}
+                            onClick={()=>handleCancel(request._id)}
                             className="btn btn-xs "
                           >
                             Cancel
@@ -98,32 +120,24 @@ const DashboardHome = () => {
                         </div>
                       )}
                     </td>
-                    <td>
-                      {request?.donationStatus === "inprogress" && (
-                        <div className="">
-                        Donor {request.requester},{request.requesterEmail}
-                        </div>
-                      )}
-                    </td>
                     <td className="flex gap-3">
-                      <Link to={`update/${request._id}`}>
-                        {" "}
-                        <button className="btn btn-xs">Edit</button>
-                      </Link>
+                      {request?.requesterEmail === user?.email && (
+                        <Link to={`/dashboard/update/${request._id}`}>
+                          {" "}
+                          <button className="btn btn-xs">Edit</button>
+                        </Link>
+                      )}
                       <Link to={`/dashboard/details/${request._id}`}>
-                 <button
-                   
-                   className="btn btn-xs"
-                 >
-                   view
-                 </button>
-                 </Link>
-                      <button
-                        onClick={() => handleDelete(request._id)}
-                        className="btn btn-xs"
-                      >
-                        delete
-                      </button>
+                        <button className="btn btn-xs">view</button>
+                      </Link>
+                      {request?.requesterEmail === user?.email && (
+                        <button
+                          onClick={() => handleDelete(request._id)}
+                          className="btn btn-xs"
+                        >
+                          delete
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -134,9 +148,13 @@ const DashboardHome = () => {
       ) : (
         <h1 className="text-2xl mt-5 ">You haven't created any request yet</h1>
       )}
-     <div className="text-center mt-10">
-     <Link to='/dashboard/my-donation-requests'><button className="btn-outline btn btn-sm mt-5">View All Request</button></Link>
-     </div>
+      <div className="text-center mt-10">
+        <Link to="/dashboard/my-donation-requests">
+          <button className="btn-outline btn btn-sm mt-5">
+            View All Request
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

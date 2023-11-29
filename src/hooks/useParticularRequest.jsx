@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const useParticularRequest = () => {
     const params = useParams();
     const axiosPublic = useAxiosPublic();
-  
+  const id = params.id;
 
     
   
@@ -18,7 +18,7 @@ const useParticularRequest = () => {
       },
     });
   
-    return {requests,refetch}
+    return {requests,refetch,id}
 };
 
 export default useParticularRequest;

@@ -42,7 +42,7 @@ useEffect(() => {
     return () => {
       unSubscribe();
     };
-  });      // removed dependency array
+  },[]);      // removed dependency array
 
 
   // update user
