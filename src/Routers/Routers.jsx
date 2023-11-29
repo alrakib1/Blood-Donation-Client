@@ -10,6 +10,7 @@ import Dashboard from "../layout/Dashboard";
 import DashboardHome from "../pages/dashboard/home/DashboardHome";
 import Profile from "../pages/dashboard/Profile/Profile";
 import CreateRequest from "../pages/dashboard/Create Request/CreateRequest";
+import UpdateRequest from "../pages/dashboard/Update/UpdateRequest";
 
 
     const Routers = createBrowserRouter([
@@ -49,6 +50,11 @@ import CreateRequest from "../pages/dashboard/Create Request/CreateRequest";
             {
               path: '/dashboard/create-donation-request',
               element: <CreateRequest></CreateRequest>
+            }
+            ,
+            {
+              path: '/dashboard/update/:id',
+              element: <UpdateRequest></UpdateRequest>
             }
 
           ]

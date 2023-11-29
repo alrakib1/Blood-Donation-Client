@@ -6,8 +6,6 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 
 import { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import useArea from "../../../hooks/useArea";
 
@@ -29,12 +27,6 @@ const Profile = () => {
       return res.data;
     },
   });
-  //   console.log(currentUser);
-
-  // Every user(admin, donner, or volunteer) will have a profile page. And from where
-  // the user is able to see his name, email, avatar, address(district, upazila), blood
-  // group and able to update profile information.(only the email will not be
-  // changeable)
 
   const onSubmit = async (data) => {
     const name = data.name;
@@ -67,7 +59,7 @@ const Profile = () => {
         `/user?email=${user?.email}`,
         updatedProfile
       );
-    //   console.log(result.data);
+   
       if (result.data.modifiedCount > 0) {
         refetch();
         setEditProfile(false);
