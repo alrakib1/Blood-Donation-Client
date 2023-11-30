@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import useArea from "../../../hooks/useArea";
 import { Helmet } from "react-helmet";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -18,16 +19,10 @@ const Profile = () => {
   const { districts, upazilas } = useArea();
   const { register, handleSubmit } = useForm();
   const { user, updateUser } = useAuth();
-  const axiosPublic = useAxiosPublic();
   const [editProfile, setEditProfile] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
-  const { data: currentUser = [], refetch } = useQuery({
-    queryKey: ["CurrentUser", user?.email],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/profile?email=${user?.email}`);
-      return res.data;
-    },
-  });
+  const {currentUser,refetch} = useCurrentUser();
 
   const onSubmit = async (data) => {
     const name = data.name;
@@ -45,7 +40,6 @@ const Profile = () => {
     });
 
     if (res.data.success) {
-      //   console.log(res.data);
       const avatar = res.data.data.display_url;
       updateUser(name, avatar);
       const updatedProfile = {
@@ -82,48 +76,46 @@ const Profile = () => {
     setEditProfile(!editProfile);
   };
 
- 
+ const loggedInUser = currentUser[0];
 
   return (
     <div>
       <Helmet><title>Blood Donation | Profile</title></Helmet>
       <div>
-        {currentUser.map((cUser) => (
-          <div key={cUser._id}>
+        <div >
             <div className="flex flex-col md:flex-row gap-10">
               <div>
                 <img
-                  src={cUser.avatarImage || user.photoURL}
+                  src={loggedInUser?.avatarImage || user?.photoURL}
                   alt="Avatar"
                   style={{ maxWidth: "150px" }}
                 />
               </div>
               <div className="pt-5">
-                <h2 className="text-2xl font-semibold">Name: {cUser.name || user.displayName}</h2>
-                <p className="text-xl font-semibold">Email: {cUser.email}</p>
+                <h2 className="text-2xl font-semibold">Name: {loggedInUser?.name || user?.displayName}</h2>
+                <p className="text-xl font-semibold">Email: {loggedInUser?.email || user?.email}</p>
                 <p className="text-red-400 font-semibold">
-                  Blood Group: {cUser.bloodGroup}
+                  Blood Group: {loggedInUser?.bloodGroup}
                 </p>
-                <p className="font-semibold">Upazila: {cUser.upazila}</p>
-                <p className="font-semibold">District: {cUser.district}</p>
+                <p className="font-semibold">Upazila: {loggedInUser?.upazila}</p>
+                <p className="font-semibold">District: {loggedInUser?.district}</p>
                 <p className="font-semibold">
                   Status:{" "}
                   <span
                     style={
-                      cUser.status === "active"
+                      loggedInUser?.status === "active"
                         ? { color: "green" }
                         : { color: "red" }
                     }
                   >
                     {" "}
-                    {cUser.status}
+                    {loggedInUser?.status}
                   </span>
                 </p>
-                <p className="font-semibold">Role: {cUser.role}</p>
+                <p className="font-semibold">Role: {loggedInUser?.role}</p>
               </div>
             </div>
           </div>
-        ))}
       </div>
 
       <button

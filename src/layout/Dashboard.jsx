@@ -94,6 +94,20 @@ function Dashboard(props) {
               </ListItem>
             </Link>
           </div>
+          <div>
+            <Link to="/dashboard/allusers">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      <VscGitPullRequestGoToChanges className="text-xl" />
+                    </ListItemIcon>
+                  </div>
+                  <h1>All Users</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
         </div>
       </List>
       <Divider />

@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
@@ -7,6 +7,9 @@ const Login = () => {
   const { login } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,7 +28,7 @@ const Login = () => {
             showConfirmButton: false,
             timer: 2000,
           });
-          navigate("/");
+          navigate(from, { replace: true });
         }
       })
       .catch(() => {
@@ -39,6 +42,10 @@ const Login = () => {
         });
       });
   };
+
+  
+
+
 
   return (
     <div>

@@ -12,25 +12,31 @@ const MyRequest = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
-  const handleCancel = (id) => {
+  const handleCancel = async (id) => {
     //
-    console.log(id);
+    const data = {
+      donationStatus: "canceled",
+    };
+    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
   };
 
   const handleDone = async (id) => {
-    console.log("done btn clicked");
+    // console.log("done btn clicked");
     const data = {
       donationStatus: "done",
     };
     const res = await axiosPublic.patch(`/done/${id}`, data);
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.modifiedCount > 0) {
       refetch();
     }
   };
 
   const handleDelete = (id) => {
-    console.log("delete this", id);
+    // console.log("delete this", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -112,14 +118,14 @@ const MyRequest = () => {
                   {request?.donationStatus === "inprogress" ? (
                     <>{request.donorName}</>
                   ) : (
-                    <>None</>
+                    <>{request.donorName || "None"}</>
                   )}
                 </td>
                 <td>
                   {request?.donationStatus === "inprogress" ? (
                     <>{request.donorEmail}</>
                   ) : (
-                    <>None</>
+                    <>{request.donorEmail || "None"}</>
                   )}
                 </td>
                 <td>

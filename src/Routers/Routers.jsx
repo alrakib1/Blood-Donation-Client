@@ -13,7 +13,9 @@ import CreateRequest from "../pages/dashboard/Create Request/CreateRequest";
 import UpdateRequest from "../pages/dashboard/Update/UpdateRequest";
 import MyRequest from "../pages/dashboard/My Requests/MyRequest";
 import RequestDetails from "../pages/dashboard/Request Details/RequestDetails";
-
+import AllRequest from "../pages/All Request/AllRequest";
+import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
 
     const Routers = createBrowserRouter([
         {
@@ -32,11 +34,19 @@ import RequestDetails from "../pages/dashboard/Request Details/RequestDetails";
                 path: '/login',
                 element: <Login></Login>
             }
+            ,
+            {
+                path: '/requests',
+                element: <AllRequest></AllRequest>
+            }
+            ,
           ]
         },
         {
           path:'/dashboard',
-          element: <Dashboard></Dashboard>,
+          element: <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>,
           children:[
             {
               path:'/dashboard',
@@ -66,6 +76,12 @@ import RequestDetails from "../pages/dashboard/Request Details/RequestDetails";
               path: '/dashboard/details/:id',
               element: <RequestDetails></RequestDetails>
             }
+            ,
+            {
+              path: '/dashboard/allusers',
+              element: <AllUsers></AllUsers>
+            }
+            ,
 
           ]
         }

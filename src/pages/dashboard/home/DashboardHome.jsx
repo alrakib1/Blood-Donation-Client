@@ -12,17 +12,27 @@ const DashboardHome = () => {
   const { sortedRequest, refetch } = useUserRequests();
   const selectedRequests = sortedRequest.slice(0, 3);
 
-  const handleDone = async(id) => {
+  const handleDone = async (id) => {
     console.log("done btn clicked");
     const data = {
-      donationStatus : 'done'
+      donationStatus: "done",
+    };
+    const res = await axiosPublic.patch(`/done/${id}`, data);
+    // console.log(res.data)
+    if (res.data.modifiedCount > 0) {
+      refetch();
     }
-    const res = await axiosPublic.patch(`/done/${id}`,data);
-    console.log(res.data)
-
   };
-  const handleCancel = (id) => {
-    console.log("cancel btn clicked",id);
+
+  const handleCancel = async (id) => {
+    //
+    const data = {
+      donationStatus: "canceled",
+    };
+    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
   };
 
   const handleDelete = (id) => {
@@ -95,30 +105,34 @@ const DashboardHome = () => {
                       {request?.donationStatus === "inprogress" ? (
                         <>{request.donorName}</>
                       ) : (
-                        <>None</>
+                        <>{request.donorName || "None"}</>
                       )}
                     </td>
                     <td>
                       {request?.donationStatus === "inprogress" ? (
                         <>{request.donorEmail}</>
                       ) : (
-                        <>None</>
+                        <>{request.donorEmail || "None"}</>
                       )}
                     </td>
                     <td>
-                      {request?.donationStatus === "inprogress" && (
-                        <div className="flex gap-5">
-                          <button onClick={()=>handleDone(request._id)} className="btn btn-xs">
-                            Done
-                          </button>
-                          <button
-                            onClick={()=>handleCancel(request._id)}
-                            className="btn btn-xs "
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      )}
+                      {request?.donationStatus === "inprogress" &&
+                        request?.requesterEmail === user?.email && (
+                          <div className="flex gap-5">
+                            <button
+                              onClick={() => handleDone(request._id)}
+                              className="btn btn-xs"
+                            >
+                              Done
+                            </button>
+                            <button
+                              onClick={() => handleCancel(request._id)}
+                              className="btn btn-xs "
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        )}
                     </td>
                     <td className="flex gap-3">
                       {request?.requesterEmail === user?.email && (

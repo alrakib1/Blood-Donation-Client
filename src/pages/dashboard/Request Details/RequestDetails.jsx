@@ -30,8 +30,8 @@ const RequestDetails = () => {
 
   const handleConfirm = async () => {
 
-    const donorName = user.displayName;
-    const donorEmail = user.email;
+    const donorName = user?.displayName;
+    const donorEmail = user?.email;
     const donationStatus = "inprogress";
 
     const updatedData = {
@@ -40,7 +40,7 @@ const RequestDetails = () => {
       donationStatus,
     };
 
-    const res = await axiosPublic.patch(`/donor/${params.id}`, updatedData);
+    const res = await axiosPublic.patch(`/status/${params.id}`, updatedData);
 
     if (res.data.modifiedCount > 0) {
       Swal.fire({
@@ -59,21 +59,21 @@ const RequestDetails = () => {
         <title>Blood Donation | Details</title>
       </Helmet>
       <ChakraProvider>
-        <div>
-          <h2>Requester Name: {requests.requester}</h2>
-          <p>Requester Email : {requests.requesterEmail}</p>
-          <p>Recipient Name: {requests.recipientName}</p>
-          <p>Required Blood Group : {requests.requiredBloodGroup}</p>
-          <p>Date: {requests.donationDate}</p>
-          <p>Time: {requests.donationTime}</p>
-          <p>
+        <div className="mt-10">
+          <h2 className="text-xl font-semibold text-green-500">Requester Name: {requests.requester}</h2>
+          <p className="text-xl font-semibold text-blue-500">Requester Email : {requests.requesterEmail}</p>
+          <p className="text-xl font-semibold text-violet-500">Recipient Name: {requests.recipientName}</p>
+          <p className="text-xl font-semibold text-red-500">Required Blood Group : {requests.requiredBloodGroup}</p>
+          <p className="font-bold">Date: {requests.donationDate}</p>
+          <p className="font-bold">Time: {requests.donationTime}</p>
+          <p className="font-bold">
             Address: {requests.upazila},{requests.district}
           </p>
-          <p>Full Address : {requests.fullAddress}</p>
-          <p>Reason for blood request: {requests.message}</p>
-          <p>Request Status: {requests.donationStatus}</p>
-          <p>Donor: {requests.donorName ? requests.donorName : "None"}</p>
-          <p>
+          <p className="font-bold">Full Address : {requests.fullAddress}</p>
+          <p className="font-bold text-gray-400">Reason for blood request: {requests.message}</p>
+          <p className="font-bold">Request Status: <span className="text-orange-500">{requests.donationStatus}</span></p>
+          <p className="text-xl font-semibold">Donor: {requests.donorName ? requests.donorName : "None"}</p>
+          <p className="text-xl font-semibold">
             Donor Email : {requests.donorEmail ? requests.donorEmail : "None"}
           </p>
           <Box
@@ -82,7 +82,7 @@ const RequestDetails = () => {
             aria-label="Focus moved to this box"
           ></Box>
 {
-  requests.donationStatus !== 'inprogress' && <Button mt={4} onClick={onOpen}>
+  requests.donationStatus == 'pending' && <Button mt={4} onClick={onOpen}>
   Donate
 </Button>
 }
