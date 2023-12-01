@@ -52,7 +52,7 @@ const Login = () => {
       <Helmet>
         <title>LifeFlowDonor | Login</title>
       </Helmet>
-      <div className="py-10 px-5">
+      <div className="py-10 px-5 min-h-[calc(100vh-220px)] flex justify-center items-center">
         <div className="md:w-2/4 lg:w-5/12 xl:w-1/4 mx-auto">
           <div className="border rounded-md shadow-xl shadow-red-900 py-10">
             <h1 className="text-center text-white font-semibold text-2xl">

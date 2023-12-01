@@ -117,7 +117,7 @@ const Signup = () => {
       </Helmet>
       <div className="py-10 px-5 text-sm">
         <div className="md:w-2/4 lg:w-5/12 xl:w-1/4 mx-auto">
-        <div className="mb-10 border rounded-md shadow-red-950 shadow-xl py-10">
+        <div className="mb-10 border rounded-md shadow-red-950 shadow-xl">
       <div className="p-4">
         <h3 className="text-2xl mb-4 text-center font-semibold text-white">
           Join us and help us to save lives
@@ -197,7 +197,7 @@ const Signup = () => {
               </p>
               <select
                 {...register("upazila", { required: true })}
-                className="select select-bordered w-full"
+                className="py-2 px-2 rounded-md select-bordered w-full"
               >
                 {upazilas.map((option, index) => (
                   <option key={index} value={option.name}>
@@ -212,7 +212,7 @@ const Signup = () => {
               </p>
               <select
                 {...register("district", { required: true })}
-                className="select select-bordered w-full"
+                className="py-2 px-2 rounded-md select-bordered w-full"
               >
                 {districts.map((option, index) => (
                   <option key={index} value={option.name}>
@@ -226,7 +226,7 @@ const Signup = () => {
           <br />
           <button
             type="submit"
-            className="text-red-500 shadow-lg btn bg-white border-0 mb-5 hover:bg-blue-500 hover:text-white"
+            className="text-red-500 shadow-lg py-1 transition delay-200 px-2 rounded-md bg-white border-0 mb-5 hover:bg-blue-500 hover:text-white"
           >
             Sign Up
           </button>
