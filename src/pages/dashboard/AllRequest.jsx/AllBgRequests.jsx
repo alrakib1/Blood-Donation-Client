@@ -1,82 +1,82 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import Swal from "sweetalert2";
-import './All.css'
-
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useCurrentUser from "../../../hooks/useCurrentUser";
+import "./All.css";
 
 const AllBgRequests = () => {
-    const axiosPublic = useAxiosPublic();
-    const {data:allRequests=[],refetch} = useQuery({
-        queryKey: ['all-requests'],
-        queryFn: async()=>{
-            const res = await axiosPublic.get('/request');
-            return res.data;
+  const axiosPublic = useAxiosPublic();
+  const { data: allRequests = [], refetch } = useQuery({
+    queryKey: ["all-requests"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/request");
+      return res.data;
+    },
+  });
+
+  const [status, setStatus] = useState("");
+
+  const { currentUser } = useCurrentUser();
+
+  const handleCancel = async (id) => {
+    //
+    const data = {
+      donationStatus: "canceled",
+    };
+    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
+  };
+
+  const handleDone = async (id) => {
+    // console.log("done btn clicked");
+    const data = {
+      donationStatus: "done",
+    };
+    const res = await axiosPublic.patch(`/done/${id}`, data);
+    // console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
+  };
+
+  const handleDelete = (id) => {
+    // console.log("delete this", id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const rest = await axiosPublic.delete(`/request/${id}`);
+
+        if (rest.data.deletedCount > 0) {
+          // console
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch();
         }
-    })
-
-    const [status, setStatus] = useState("");
-  
-  
-    const handleCancel = async (id) => {
-      //
-      const data = {
-        donationStatus: "canceled",
-      };
-      const res = await axiosPublic.patch(`/cancel/${id}`, data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
       }
-    };
-  
-    const handleDone = async (id) => {
-      // console.log("done btn clicked");
-      const data = {
-        donationStatus: "done",
-      };
-      const res = await axiosPublic.patch(`/done/${id}`, data);
-      // console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-      }
-    };
-  
-    const handleDelete = (id) => {
-      // console.log("delete this", id);
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const rest = await axiosPublic.delete(`/request/${id}`);
-  
-          if (rest.data.deletedCount > 0) {
-            // console
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-            refetch();
-          }
-        }
-      });
-    };
-  
-    const filteredRequest = allRequests.filter(
-      (request) => status === "" || request.donationStatus === status
-    );
+    });
+  };
 
+  const filteredRequest = allRequests.filter(
+    (request) => status === "" || request.donationStatus === status
+  );
 
-    return (
-        <div className="w-full mt-5">
+  return (
+    <div className="w-full mt-5">
       <Helmet>
         <title>Blood Donation |All Requests</title>
       </Helmet>
@@ -136,41 +136,41 @@ const AllBgRequests = () => {
                   )}
                 </td>
                 <td>
-                
-                    <div className="flex gap-5">
-                      <button
-                        onClick={() => handleDone(request._id)}
-                        className="btn btn-xs"
-                      >
-                        Done
-                      </button>
-                      <button
-                        onClick={() => handleCancel(request._id)}
-                        className="btn btn-xs "
-                      >
-                        Cancel
-                      </button>
-                    </div>
-               
+                  <div className="flex gap-5">
+                    <button
+                      onClick={() => handleDone(request._id)}
+                      className="btn btn-xs"
+                    >
+                      Done
+                    </button>
+                    <button
+                      onClick={() => handleCancel(request._id)}
+                      className="btn btn-xs "
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </td>
-                <td className="flex gap-3">
-           
+                {currentUser[0]?.role === "admin" && (
+                  <td className="flex gap-3">
                     <Link to={`/dashboard/update/${request._id}`}>
                       {" "}
                       <button className="btn btn-xs">Edit</button>
                     </Link>
-                 
-                  <Link to={`/dashboard/details/${request._id}`}>
-                    <button className="btn btn-xs">view</button>
-                  </Link>
-                
+
                     <button
                       onClick={() => handleDelete(request._id)}
                       className="btn btn-xs"
                     >
                       delete
                     </button>
-               
+                  </td>
+                )}
+                <td>
+                  {" "}
+                  <Link to={`/dashboard/details/${request._id}`}>
+                    <button className="btn btn-xs">view</button>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -178,7 +178,7 @@ const AllBgRequests = () => {
         </table>
       </div>
     </div>
-    );
+  );
 };
 
 export default AllBgRequests;

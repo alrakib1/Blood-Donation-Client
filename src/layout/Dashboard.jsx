@@ -57,6 +57,59 @@ function Dashboard(props) {
               </Link>
             </div>
           )}
+
+          {/* for volunteer */}
+          {userRole === "volunteer" && (
+            <div>
+              <div>
+                <Link to="/dashboard/adminHome">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <AddHomeIcon />
+                        </ListItemIcon>
+                      </div>
+                      <h1>Dashboard Home</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+              <div>
+                <Link to="/dashboard/all-blood-donation-request">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        </ListItemIcon>
+                      </div>
+                      <h1>All Donation Request</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+              <Divider />
+
+              <div>
+                <Link to=" /dashboard/content-management">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        </ListItemIcon>
+                      </div>
+                      <h1>Content Management</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+
+              <Divider />
+            </div>
+          )}
+
           {isAdmin && (
             <div>
               <div>
@@ -155,7 +208,7 @@ function Dashboard(props) {
             </Link>
           </div>
           <Divider />
-        
+
           <div>
             <Link to="/dashboard/create-donation-request">
               <ListItem disablePadding>
@@ -173,30 +226,30 @@ function Dashboard(props) {
         </div>
       </List>
       <Divider />
-          <div>
-            <Link to="/dashboard/paymentHistory">
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <div>
-                    <ListItemIcon>
-                      <FaRegPenToSquare className="text-xl" />
-                    </ListItemIcon>
-                  </div>
-                  <h1>Donation History</h1>
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          </div>
-          <Divider />
-
-    <div  className="text-center mt-10">
-    <List>
-        <Link to="/">
-          {" "}
-          <button className="btn text-center btn-sm ">Go Back to home</button>
+      <div>
+        <Link to="/dashboard/paymentHistory">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <div>
+                <ListItemIcon>
+                  <FaRegPenToSquare className="text-xl" />
+                </ListItemIcon>
+              </div>
+              <h1>Donation History</h1>
+            </ListItemButton>
+          </ListItem>
         </Link>
-      </List>
-    </div>
+      </div>
+      <Divider />
+
+      <div className="text-center mt-10">
+        <List>
+          <Link to="/">
+            {" "}
+            <button className="btn text-center btn-sm ">Go Back to home</button>
+          </Link>
+        </List>
+      </div>
     </div>
   );
 

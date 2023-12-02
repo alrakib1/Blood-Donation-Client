@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useBlogs from "../../../hooks/useBlogs";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const ContentManagement = () => {
   const [status, setStatus] = useState("");
   const axiosPublic = useAxiosPublic();
 
 const { blogs, refetch } = useBlogs();
+
+const {currentUser} = useCurrentUser();
 
   const filteredBlogs = blogs.filter(
     (blog) => status === "" || blog.status === status
@@ -87,8 +90,10 @@ const { blogs, refetch } = useBlogs();
                 <th></th>
                 <th> Blog Title</th>
                 <th>Status</th>
-                <th>Action</th>
-                <th>Action</th>
+                {
+                  currentUser[0]?.role === 'admin' && <><th>Action</th>
+                  <th>Action</th></>
+                }
               </tr>
             </thead>
             <tbody>
@@ -98,22 +103,29 @@ const { blogs, refetch } = useBlogs();
 
                   <td>{blog.title}</td>
                   <td>{blog.status}</td>
-                  <td>
-                    <button
-                      onClick={() => handlePublish(blog._id)}
-                      className="btn btn-xs"
-                    >
-                      Publish
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(blog._id)}
-                      className="btn btn-xs"
-                    >
-                      Delete
-                    </button>
-                  </td>
+                {
+                  blog.status === 'draft' ?  <td>
+                  {
+                    currentUser[0]?.role === 'admin' && <button
+                    onClick={() => handlePublish(blog._id)}
+                    className="btn btn-xs"
+                  >
+                    Publish
+                  </button>
+                  }
+                </td>
+                : <td></td>
+                }
+                 {
+                  currentUser[0]?.role=== 'admin' &&  <td>
+                  <button
+                    onClick={() => handleDelete(blog._id)}
+                    className="btn btn-xs"
+                  >
+                    Delete
+                  </button>
+                </td>
+                 }
                 </tr>
               ))}
             </tbody>

@@ -6,10 +6,12 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import "./Navbar.css";
 import useAdmin from "../../../hooks/useAdmin";
+import useCurrentUser from "../../../hooks/useCurrentUser";
 const Navbar = () => {
   const { user,logout } = useAuth();
   const [isAdmin] =useAdmin();
-
+const {currentUser} = useCurrentUser();
+console.log(currentUser[0]?.role)
 
   const navLinks = (
     <>
@@ -28,11 +30,14 @@ const Navbar = () => {
         <>
           {" "}
           {
-       user && isAdmin && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
+       user && isAdmin  && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
 
       }
       {
-       user && !isAdmin && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
+        user &&  currentUser[0]?.role =='volunteer' && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
+      }
+      {
+       user && currentUser[0]?.role === "donor" && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
 
       }
           <li>
@@ -93,7 +98,25 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {
-          user && <a onClick={()=>logout()} className="btn">Logout</a>
+          user && <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+            </div>
+          </div>
+         
+          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <Link to='/dashboard/profile' className="justify-between">
+            Profile
+        
+          </Link>
+        </li>
+        <li><a onClick={()=>logout()} className="hover:bg-red-500 hover:text-white">Logout</a></li>
+      </ul>
+        </div>
+  
+        
         }
       </div>
     </div>
