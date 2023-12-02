@@ -91,7 +91,7 @@ const CheckoutFrom = () => {
     } else {
       console.log(paymentIntent, "payment intent");
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id", paymentIntent.id);
+        // console.log("transaction id", paymentIntent.id);
         setTransaction(paymentMethod.id);
 
         //  now save the payment in the database
@@ -104,14 +104,14 @@ const CheckoutFrom = () => {
         };
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
+        // console.log("payment saved", res.data);
    
         if (res.data.donationResult.insertedId) {
           //
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
-            title: "Payment successful",
+            title: "Donation successful",
             showConfirmButton: false,
             timer: 1500,
           });
