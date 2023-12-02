@@ -16,14 +16,22 @@ const Navbar = () => {
       <li>
         <NavLink to="/requests">Donation Requests</NavLink>
       </li>
+      <li>
+        <NavLink to="/blogs">Blogs</NavLink>
+      </li>
      
 
       {user ? (
         <>
           {" "}
-          <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </li>
+          {/* {
+       user && isAdmin && <li><Link to='/dashboard/admin'>Dashboard</Link></li>
+
+      }
+      {
+       user && !isAdmin && <li><Link to='/dashboard/user'>Dashboard</Link></li>
+
+      } */}
           <li>
             <NavLink to="/funding">Fundings</NavLink>
           </li>

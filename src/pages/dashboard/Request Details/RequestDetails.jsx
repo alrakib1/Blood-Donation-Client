@@ -59,13 +59,14 @@ const RequestDetails = () => {
         <title>Blood Donation | Details</title>
       </Helmet>
       <ChakraProvider>
-        <div className="mt-10">
+        <div className="mt-10 space-y-3">
           <h2 className="text-xl font-semibold text-green-500">Requester Name: {requests.requester}</h2>
           <p className="text-xl font-semibold text-blue-500">Requester Email : {requests.requesterEmail}</p>
           <p className="text-xl font-semibold text-violet-500">Recipient Name: {requests.recipientName}</p>
           <p className="text-xl font-semibold text-red-500">Required Blood Group : {requests.requiredBloodGroup}</p>
-          <p className="font-bold">Date: {requests.donationDate}</p>
-          <p className="font-bold">Time: {requests.donationTime}</p>
+          <p className="font-bold">Date of the donation: {requests.donationDate}</p>
+          <p className="font-bold">Donation Time: {requests.donationTime}</p>
+          <p className="text-xl font-bold text-violet-400">Hospital Name : {requests.hospitalName}</p>
           <p className="font-bold">
             Address: {requests.upazila},{requests.district}
           </p>

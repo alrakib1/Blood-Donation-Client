@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUsers from "../../../hooks/useUsers";
@@ -5,6 +6,7 @@ import useUsers from "../../../hooks/useUsers";
 const AllUsers = () => {
   const { users, refetch } = useUsers();
   const axiosPublic = useAxiosPublic();
+  const [status, setStatus] = useState("");
 
   const handleBlock = async (id) => {
     const res = await axiosPublic.patch(`/users/block/${id}`);
@@ -35,41 +37,73 @@ const AllUsers = () => {
   };
 
   const handleVolunteer = async (id) => {
-    console.log("volunteer btn", id);
-    const res = await axiosPublic.patch(`/users/volunteer/${id}`);
-    if (res.data.modifiedCount > 0) {
-      refetch();
-      Swal.fire({
-        title: "user has been added as volunteer",
-        showConfirmButton: false,
-        icon: "success",
-        timer: 1500,
-      });
-    }
+    Swal.fire({
+      title: "Do you want to make this user a volunteer?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.patch(`/users/volunteer/${id}`);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "user has been added as a volunteer",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
   };
 
- 
-
-  const handleAdmin = async (id) => {
-    console.log("admin btn", id);
-
-    const res = await axiosPublic.patch(`/users/admin/${id}`);
-    console.log(res.data);
-    if (res.data.modifiedCount > 0) {
-      refetch();
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "user has been added as an admin",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+  const handleAdmin = (id) => {
+    Swal.fire({
+      title: "Do you want to make this user an admin?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.patch(`/users/admin/${id}`);
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "user has been added as an admin",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
   };
+
+  const filteredUsers = users.filter(
+    (user) => status === "" || user.status === status
+  );
+// console.log(filteredUsers)
 
   return (
     <div>
-      <h3 className="mt-10 mb-11 text-2xl font-bold text-center">All Users</h3>
+      <h3 className="mt-10 mb-10 text-2xl font-bold text-center">All Users</h3>
+      <div className="mb-10">
+        <select  value={status}
+          onChange={(e) => setStatus(e.target.value)} className="select select-bordered w-full max-w-xs">
+          <option value="">All</option>
+          <option value="active">Active</option>
+          <option value="blocked">Blocked</option>
+        </select>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -86,7 +120,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {filteredUsers.map((user, index) => (
               <tr key={user._id}>
                 <td>{index + 1}</td>
                 <td>
@@ -128,16 +162,16 @@ const AllUsers = () => {
                     </button>
                   </th>
                 )}
-                {user.role !== "admin" && (
-                  <th>
-                    <button
-                      className="btn btn-ghost btn-xs"
-                      onClick={() => handleVolunteer(user._id)}
-                    >
-                      Make Volunteer
-                    </button>
-                  </th>
-                )}
+
+                <th>
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => handleVolunteer(user._id)}
+                  >
+                    Make Volunteer
+                  </button>
+                </th>
+
                 {user.role !== "admin" && (
                   <th>
                     <button

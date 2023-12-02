@@ -16,6 +16,14 @@ import RequestDetails from "../pages/dashboard/Request Details/RequestDetails";
 import AllRequest from "../pages/All Request/AllRequest";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import AllBgRequests from "../pages/dashboard/AllRequest.jsx/AllBgRequests";
+import ContentManagement from "../pages/dashboard/Content Management/ContentManagement";
+import AddBlog from "../pages/dashboard/AddBlog/AddBlog";
+import Blogs from "../pages/Blogs/Blogs";
+import BlogDetails from "../pages/dashboard/Request Details/BlogDetails";
+import Search from "../pages/Search/Search";
+import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
 
     const Routers = createBrowserRouter([
         {
@@ -40,6 +48,21 @@ import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
                 element: <AllRequest></AllRequest>
             }
             ,
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
+            }
+            ,
+            {
+                path: '/details/:id',
+                element: <BlogDetails></BlogDetails>
+            }
+            ,
+            {
+                path: '/search',
+                element:<Search></Search>
+            }
+            ,
           ]
         },
         {
@@ -49,9 +72,15 @@ import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
           </PrivateRoute>,
           children:[
             {
-              path:'/dashboard',
+              path:'/dashboard/user',
               element:<DashboardHome></DashboardHome>
             },
+            
+            {
+              path:'/dashboard/admin',
+              element:<AdminHome></AdminHome>
+            },
+
             {
               path:'/dashboard/profile',
               element:<Profile></Profile>
@@ -74,12 +103,38 @@ import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
             },
             {
               path: '/dashboard/details/:id',
-              element: <RequestDetails></RequestDetails>
+              element: <PrivateRoute>
+                <RequestDetails></RequestDetails>
+              </PrivateRoute>
+            }
+            ,
+            // admin related route
+            {
+              path: '/dashboard/allusers',
+              element: <AdminRoute>
+                <AllUsers></AllUsers>
+              </AdminRoute>
             }
             ,
             {
-              path: '/dashboard/allusers',
-              element: <AllUsers></AllUsers>
+              path: '/dashboard/all-blood-donation-request',
+              element: <AdminRoute>
+              <AllBgRequests></AllBgRequests>
+              </AdminRoute>
+            }
+            ,
+            {
+              path: ' /dashboard/content-management',
+              element: <AdminRoute>
+              <ContentManagement></ContentManagement>
+              </AdminRoute>
+            }
+            ,
+            {
+              path: '/dashboard/content-management/add-blog',
+              element: <AdminRoute>
+              <AddBlog></AddBlog>
+              </AdminRoute>
             }
             ,
 

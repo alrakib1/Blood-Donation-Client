@@ -1,0 +1,127 @@
+
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useBlogs from "../../../hooks/useBlogs";
+
+const ContentManagement = () => {
+  const [status, setStatus] = useState("");
+  const axiosPublic = useAxiosPublic();
+
+const { blogs, refetch } = useBlogs();
+
+  const filteredBlogs = blogs.filter(
+    (blog) => status === "" || blog.status === status
+  );
+
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.delete(`/blogs/${id}`);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your blog has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
+  };
+  const handlePublish = async (id) => {
+    console.log(id);
+    const res = await axiosPublic.patch(`/blogs/${id}`);
+    // console.log(res.data)
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your blog has been published",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  return (
+    <div>
+      <Helmet>
+        <title>Blood Donation |Content Management</title>
+      </Helmet>
+
+      <div className="flex justify-end">
+        <Link to="/dashboard/content-management/add-blog">
+          <button className="btn btn-error text-white">Add blog</button>
+        </Link>
+      </div>
+
+      <div className="mb-10">
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          className="select select-bordered w-full max-w-xs"
+        >
+          <option value="">All</option>
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+      </div>
+      <div>
+        <div className="overflow-x-auto">
+          <table className="table table-xs">
+            <thead>
+              <tr>
+                <th></th>
+                <th> Blog Title</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBlogs.map((blog, index) => (
+                <tr key={blog._id}>
+                  <th>{index + 1}</th>
+
+                  <td>{blog.title}</td>
+                  <td>{blog.status}</td>
+                  <td>
+                    <button
+                      onClick={() => handlePublish(blog._id)}
+                      className="btn btn-xs"
+                    >
+                      Publish
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(blog._id)}
+                      className="btn btn-xs"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContentManagement;
