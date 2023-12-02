@@ -11,7 +11,7 @@ const Navbar = () => {
   const { user,logout } = useAuth();
   const [isAdmin] =useAdmin();
 const {currentUser} = useCurrentUser();
-console.log(currentUser[0]?.role)
+// console.log(currentUser[0]?.role)
 
   const navLinks = (
     <>

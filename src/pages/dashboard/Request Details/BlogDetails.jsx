@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 
 const BlogDetails = () => {
@@ -17,6 +18,9 @@ const BlogDetails = () => {
    
     return (
         <div className="h-screen pt-5">
+            <Helmet>
+                <title>Blog | Details</title>
+            </Helmet>
             <h1 className="text-2xl text-center font-bold">{blog.title}</h1>
            <div className="mx-auto mb-10 pt-5 max-w-[640px] max-h-[336px]"> <img src={blog.image} alt="" /></div>
            <p className="text-base p-5">Content: {blog.content}</p>
