@@ -1,4 +1,3 @@
-
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -6,9 +5,10 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import useArea from "../../../hooks/useArea";
-import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -21,8 +21,8 @@ const Profile = () => {
   const { user, updateUser } = useAuth();
   const [editProfile, setEditProfile] = useState(false);
   const axiosPublic = useAxiosPublic();
-
-  const {currentUser,refetch} = useCurrentUser();
+  const axiosSecure = useAxiosSecure();
+  const { currentUser, refetch } = useCurrentUser();
 
   const onSubmit = async (data) => {
     const name = data.name;
@@ -50,11 +50,11 @@ const Profile = () => {
         avatar,
       };
 
-      const result =await axiosPublic.patch(
+      const result = await axiosSecure.patch(
         `/user?email=${user?.email}`,
         updatedProfile
       );
-  
+
       if (result.data.modifiedCount > 0) {
         refetch();
         setEditProfile(false);
@@ -76,46 +76,54 @@ const Profile = () => {
     setEditProfile(!editProfile);
   };
 
- const loggedInUser = currentUser[0];
+  const loggedInUser = currentUser[0];
 
   return (
     <div>
-      <Helmet><title>Blood Donation | Profile</title></Helmet>
+      <Helmet>
+        <title>Blood Donation | Profile</title>
+      </Helmet>
       <div>
-        <div >
-            <div className="flex flex-col md:flex-row gap-10">
-              <div>
-                <img
-                  src={loggedInUser?.avatarImage || user?.photoURL}
-                  alt="Avatar"
-                  style={{ maxWidth: "150px" }}
-                />
-              </div>
-              <div className="pt-5">
-                <h2 className="text-2xl font-semibold">Name: {loggedInUser?.name || user?.displayName}</h2>
-                <p className="text-xl font-semibold">Email: {loggedInUser?.email || user?.email}</p>
-                <p className="text-red-400 font-semibold">
-                  Blood Group: {loggedInUser?.bloodGroup}
-                </p>
-                <p className="font-semibold">Upazila: {loggedInUser?.upazila}</p>
-                <p className="font-semibold">District: {loggedInUser?.district}</p>
-                <p className="font-semibold">
-                  Status:{" "}
-                  <span
-                    style={
-                      loggedInUser?.status === "active"
-                        ? { color: "green" }
-                        : { color: "red" }
-                    }
-                  >
-                    {" "}
-                    {loggedInUser?.status}
-                  </span>
-                </p>
-                <p className="font-semibold">Role: {loggedInUser?.role}</p>
-              </div>
+        <div>
+          <div className="flex flex-col md:flex-row gap-10">
+            <div>
+              <img
+                src={loggedInUser?.avatarImage || user?.photoURL}
+                alt="Avatar"
+                style={{ maxWidth: "150px" }}
+              />
+            </div>
+            <div className="pt-5">
+              <h2 className="text-2xl font-semibold">
+                Name: {loggedInUser?.name || user?.displayName}
+              </h2>
+              <p className="text-xl font-semibold">
+                Email: {loggedInUser?.email || user?.email}
+              </p>
+              <p className="text-red-400 font-semibold">
+                Blood Group: {loggedInUser?.bloodGroup}
+              </p>
+              <p className="font-semibold">Upazila: {loggedInUser?.upazila}</p>
+              <p className="font-semibold">
+                District: {loggedInUser?.district}
+              </p>
+              <p className="font-semibold">
+                Status:{" "}
+                <span
+                  style={
+                    loggedInUser?.status === "active"
+                      ? { color: "green" }
+                      : { color: "red" }
+                  }
+                >
+                  {" "}
+                  {loggedInUser?.status}
+                </span>
+              </p>
+              <p className="font-semibold">Role: {loggedInUser?.role}</p>
             </div>
           </div>
+        </div>
       </div>
 
       <button

@@ -1,19 +1,19 @@
 import { Helmet } from "react-helmet";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaCodePullRequest, FaHandHoldingDollar, FaUsers } from "react-icons/fa6";
 import { TbDiscountCheck } from "react-icons/tb";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 
 const AdminHome = () => {
   const { user } = useAuth();
-const axiosPublic = useAxiosPublic();
+const axiosSecure = useAxiosSecure();
   const {data:totalData={}} = useQuery({
     queryKey: ['totalData'],
     queryFn: async()=>{
-        const res = await axiosPublic.get('/admin-stats');
+        const res = await axiosSecure.get('/admin-stats');
         return res.data;
     }
   })

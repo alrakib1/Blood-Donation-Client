@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "./useAxiosPublic";
+
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "./useAxiosSecure";
 
 
 const useParticularRequest = () => {
     const params = useParams();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
   const id = params.id;
 
     
@@ -13,7 +14,7 @@ const useParticularRequest = () => {
     const { data: requests = {},refetch } = useQuery({
       queryKey: ["requests", params.id],
       queryFn: async () => {
-        const res = await axiosPublic.get(`/request/${params.id}`);
+        const res = await axiosSecure.get(`/request/${params.id}`);
         return res.data;
       },
     });

@@ -11,7 +11,7 @@ const Navbar = () => {
   const { user,logout } = useAuth();
   const [isAdmin] =useAdmin();
 const {currentUser} = useCurrentUser();
-// console.log(currentUser[0]?.role)
+const role = currentUser[0]?.role;
 
   const navLinks = (
     <>
@@ -34,10 +34,10 @@ const {currentUser} = useCurrentUser();
 
       }
       {
-        user &&  currentUser[0]?.role =='volunteer' && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
+        user &&  role =='volunteer' && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
       }
       {
-       user && currentUser[0]?.role === "donor" && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
+       user && role === "donor" && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
 
       }
           <li>

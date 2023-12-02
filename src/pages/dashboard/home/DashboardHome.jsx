@@ -3,12 +3,13 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUserRequests from "../../../hooks/useUserRequests";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const DashboardHome = () => {
   const { user } = useAuth();
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
   const { sortedRequest, refetch } = useUserRequests();
   const selectedRequests = sortedRequest.slice(0, 3);
 
@@ -17,7 +18,7 @@ const DashboardHome = () => {
     const data = {
       donationStatus: "done",
     };
-    const res = await axiosPublic.patch(`/done/${id}`, data);
+    const res = await axiosSecure.patch(`/done/${id}`, data);
     // console.log(res.data)
     if (res.data.modifiedCount > 0) {
       refetch();
@@ -29,7 +30,7 @@ const DashboardHome = () => {
     const data = {
       donationStatus: "canceled",
     };
-    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    const res = await axiosSecure.patch(`/cancel/${id}`, data);
     if (res.data.modifiedCount > 0) {
       refetch();
     }
@@ -47,7 +48,7 @@ const DashboardHome = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const rest = await axiosPublic.delete(`/request/${id}`);
+        const rest = await axiosSecure.delete(`/request/${id}`);
 
         if (rest.data.deletedCount > 0) {
           // console
@@ -173,14 +174,5 @@ const DashboardHome = () => {
   );
 };
 
-/**
- * edit button to edit the donation request(when click the button donor will be
-redirect to a page from where the donation request can be edit and
-update by clicking on update donation request button)
-■ delete button to delete the donation request(will show a confirmation
-modal before deleting and by confirming the donation request will be
-deleted)
- * 
- * **/
 
 export default DashboardHome;

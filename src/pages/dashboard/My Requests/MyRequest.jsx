@@ -3,21 +3,25 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useUserRequests from "../../../hooks/useUserRequests";
+
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 
 const MyRequest = () => {
   const [status, setStatus] = useState("");
   const { requests, refetch } = useUserRequests();
   const { user } = useAuth();
-  const axiosPublic = useAxiosPublic();
+ 
+
+  const axiosSecure = useAxiosSecure();
 
   const handleCancel = async (id) => {
     //
     const data = {
       donationStatus: "canceled",
     };
-    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    const res = await axiosSecure.patch(`/cancel/${id}`, data);
     if (res.data.modifiedCount > 0) {
       refetch();
     }
@@ -28,7 +32,7 @@ const MyRequest = () => {
     const data = {
       donationStatus: "done",
     };
-    const res = await axiosPublic.patch(`/done/${id}`, data);
+    const res = await axiosSecure.patch(`/done/${id}`, data);
     // console.log(res.data);
     if (res.data.modifiedCount > 0) {
       refetch();
@@ -47,7 +51,7 @@ const MyRequest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const rest = await axiosPublic.delete(`/request/${id}`);
+        const rest = await axiosSecure.delete(`/request/${id}`);
 
         if (rest.data.deletedCount > 0) {
           // console

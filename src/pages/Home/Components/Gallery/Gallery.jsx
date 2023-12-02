@@ -68,7 +68,7 @@ const itemData = [
     title: '',
   },
   {
-    img: 'https://i.ibb.co/nr0pjzt/Blood-Donation-Campaign-in-ULAB-Dec-22-300x300.jpg',
+    img: 'https://i.ibb.co/LCkNbhW/istockphoto-1335544846-612x612.jpg',
     title: '',
   },
   {

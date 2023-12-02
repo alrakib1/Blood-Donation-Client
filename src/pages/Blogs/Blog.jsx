@@ -5,7 +5,7 @@ const Blog = ({blog}) => {
    
  
     return (
-       <div className="h-screen">
+       <div className="">
         <div className="card card-compact flex flex-col justify-between bg-base-100 shadow-xl">
             <figure className="pt-5 flex justify-center max-w-[326px] max-h-[155px] mx-auto "><img src={blog.image} alt="blog-image" /></figure>
             <div className="card-body">

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -15,6 +16,7 @@ const AddBlog = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
@@ -38,7 +40,7 @@ const AddBlog = () => {
         status: "draft",
       };
 
-      const result = await axiosPublic.post("/addBlog", blogData);
+      const result = await axiosSecure.post("/addBlog", blogData);
       if (result.data.insertedId) {
         reset();
         Swal.fire({

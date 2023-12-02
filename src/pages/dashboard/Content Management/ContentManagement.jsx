@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useBlogs from "../../../hooks/useBlogs";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ContentManagement = () => {
   const [status, setStatus] = useState("");
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
 
 const { blogs, refetch } = useBlogs();
 
@@ -31,7 +32,7 @@ const {currentUser} = useCurrentUser();
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.delete(`/blogs/${id}`);
+        const res = await axiosSecure.delete(`/blogs/${id}`);
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
@@ -45,7 +46,7 @@ const {currentUser} = useCurrentUser();
   };
   const handlePublish = async (id) => {
     console.log(id);
-    const res = await axiosPublic.patch(`/blogs/${id}`);
+    const res = await axiosSecure.patch(`/blogs/${id}`);
     // console.log(res.data)
     if (res.data.modifiedCount > 0) {
       refetch();

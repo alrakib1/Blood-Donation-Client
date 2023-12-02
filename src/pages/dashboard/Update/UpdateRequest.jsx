@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useArea from "../../../hooks/useArea";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useParticularRequest from "../../../hooks/useParticularRequest";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UpdateRequest = () => {
   const params = useParams();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const { register, handleSubmit, reset } = useForm();
   const { districts, upazilas } = useArea();
@@ -41,9 +41,9 @@ const UpdateRequest = () => {
     };
 
 
-    const res = await axiosPublic.patch(`/request/${params.id}`, updatedData);
+    const res = await axiosSecure.patch(`/request/${params.id}`, updatedData);
     // console.log(res.data);
-    if (res.data.modifiedCount > 0) {
+    if (res.data?.modifiedCount > 0) {
         refetch();
       reset();
       Swal.fire({

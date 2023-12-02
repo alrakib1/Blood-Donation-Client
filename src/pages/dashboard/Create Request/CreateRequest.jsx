@@ -3,15 +3,16 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useArea from "../../../hooks/useArea";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const CreateRequest = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const { districts, upazilas } = useArea();
 
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
     const requestTime = new Date();
@@ -44,7 +45,7 @@ const CreateRequest = () => {
       requestTime,
     };
 
-    const res = await axiosPublic.post("/request", requestData);
+    const res = await axiosSecure.post("/request", requestData);
     // console.log(res.data);
     if (res.data.insertedId) {
       reset();

@@ -1,19 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 
 
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const DonationHistory = () => {
 
-    // const axiosSecure = useAxiosSecure();
-    const axiosPublic  = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
+   
     const {user} = useAuth();
     const {data:donations=[]}=useQuery({
         queryKey: ['payments',user.email],
         queryFn : async ()=>{
-            const res = await axiosPublic.get(`/payments/${user.email}`)
+            const res = await axiosSecure.get(`/payments/${user.email}`)
             return res.data;
         }
     })

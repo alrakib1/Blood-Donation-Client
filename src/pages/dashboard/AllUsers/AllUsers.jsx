@@ -1,15 +1,18 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
 import useUsers from "../../../hooks/useUsers";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const AllUsers = () => {
   const { users, refetch } = useUsers();
-  const axiosPublic = useAxiosPublic();
+ 
   const [status, setStatus] = useState("");
+  const axiosSecure = useAxiosSecure();
 
   const handleBlock = async (id) => {
-    const res = await axiosPublic.patch(`/users/block/${id}`);
+    const res = await axiosSecure.patch(`/users/block/${id}`);
 
     if (res.data.modifiedCount > 0) {
       refetch();
@@ -23,7 +26,7 @@ const AllUsers = () => {
   };
 
   const handleActive = async (id) => {
-    const res = await axiosPublic.patch(`/users/active/${id}`);
+    const res = await axiosSecure.patch(`/users/active/${id}`);
 
     if (res.data.modifiedCount > 0) {
       refetch();
@@ -36,7 +39,7 @@ const AllUsers = () => {
     }
   };
 
-  const handleVolunteer = async (id) => {
+  const handleVolunteer =(id) => {
     Swal.fire({
       title: "Do you want to make this user a volunteer?",
       text: "You won't be able to revert this!",
@@ -47,7 +50,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.patch(`/users/volunteer/${id}`);
+        const res = await axiosSecure.patch(`/users/volunteer/${id}`);
         if (res.data.modifiedCount > 0) {
           refetch();
           Swal.fire({
@@ -73,13 +76,41 @@ const AllUsers = () => {
       confirmButtonText: "Yes!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.patch(`/users/admin/${id}`);
+        const res = await axiosSecure.patch(`/users/admin/${id}`);
         if (res.data.modifiedCount > 0) {
           refetch();
           Swal.fire({
             position: "center",
             icon: "success",
             title: "user has been added as an admin",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
+  };
+
+  const handleUserDelete= (id) => {
+    
+    Swal.fire({
+      title: "Do you want to delete this user?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/user/delete/${id}`);
+        console.log(res.data)
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "user has been deleted",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -143,45 +174,46 @@ const AllUsers = () => {
 
                 <td>{user.role}</td>
                 {user.status === "active" && (
-                  <th>
+                  <td>
                     <button
                       className="btn btn-ghost btn-xs"
                       onClick={() => handleBlock(user._id)}
                     >
                       Block User
                     </button>
-                  </th>
+                  </td>
                 )}
                 {user.status === "blocked" && (
-                  <th>
+                  <td>
                     <button
                       className="btn btn-ghost btn-xs"
                       onClick={() => handleActive(user._id)}
                     >
                       Unblock User
                     </button>
-                  </th>
+                  </td>
                 )}
 
-                <th>
+                <td>
                   <button
                     className="btn btn-ghost btn-xs"
                     onClick={() => handleVolunteer(user._id)}
                   >
                     Make Volunteer
                   </button>
-                </th>
+                </td>
 
-                {user.role !== "admin" && (
-                  <th>
+               
+                  <td>
                     <button
                       className="btn btn-ghost btn-xs"
                       onClick={() => handleAdmin(user._id)}
                     >
                       Make Admin
                     </button>
-                  </th>
-                )}
+                  </td>
+         
+            <td onClick={()=>handleUserDelete(user._id)} className="btn btn-md text-xl hover:bg-red-500 mt-5" ><AiOutlineDelete/></td>
               </tr>
             ))}
           </tbody>

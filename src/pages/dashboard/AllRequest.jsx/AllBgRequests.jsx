@@ -6,9 +6,11 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 import "./All.css";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllBgRequests = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: allRequests = [], refetch } = useQuery({
     queryKey: ["all-requests"],
     queryFn: async () => {
@@ -26,7 +28,7 @@ const AllBgRequests = () => {
     const data = {
       donationStatus: "canceled",
     };
-    const res = await axiosPublic.patch(`/cancel/${id}`, data);
+    const res = await axiosSecure.patch(`/cancel/${id}`, data);
     if (res.data.modifiedCount > 0) {
       refetch();
     }
@@ -37,7 +39,7 @@ const AllBgRequests = () => {
     const data = {
       donationStatus: "done",
     };
-    const res = await axiosPublic.patch(`/done/${id}`, data);
+    const res = await axiosSecure.patch(`/done/${id}`, data);
     // console.log(res.data);
     if (res.data.modifiedCount > 0) {
       refetch();
@@ -56,7 +58,7 @@ const AllBgRequests = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const rest = await axiosPublic.delete(`/request/${id}`);
+        const rest = await axiosSecure.delete(`/request/${id}`);
 
         if (rest.data.deletedCount > 0) {
           // console

@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import HTMLReactParser from "html-react-parser";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const BlogDetails = () => {
   const params = useParams();
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
 
   const {
     data: blog = {},
@@ -15,7 +17,7 @@ const BlogDetails = () => {
   } = useQuery({
     queryKey: ["blog"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/blog/${params.id}`);
+      const res = await axiosSecure.get(`/blog/${params.id}`);
       return res.data;
     },
   });

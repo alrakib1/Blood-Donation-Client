@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 
 
 
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const CheckoutFrom = () => {
   const { user } = useAuth();
@@ -14,7 +15,8 @@ const CheckoutFrom = () => {
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
- const axiosPublic = useAxiosPublic();
+ 
+ const axiosSecure = useAxiosSecure();
 
   const [transaction, setTransaction] = useState();
   const navigate = useNavigate();
@@ -28,14 +30,14 @@ const CheckoutFrom = () => {
 
   useEffect(() => {
     if (totalDonation > 0) {
-     axiosPublic
+     axiosSecure
         .post("/create-payment-intent", { price: totalDonation })
         .then((res) => {
           console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
-  }, [axiosPublic, totalDonation]);
+  }, [axiosSecure, totalDonation]);
 
   const handleSelectChange = (event) => {
     setSelectedOption(Number(event.target.value));
@@ -101,7 +103,7 @@ const CheckoutFrom = () => {
         
         };
 
-        const res = await axiosPublic.post("/payments", payment);
+        const res = await axiosSecure.post("/payments", payment);
         console.log("payment saved", res.data);
    
         if (res.data.donationResult.insertedId) {
