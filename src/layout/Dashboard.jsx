@@ -17,6 +17,7 @@ import * as React from "react";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 import useCurrentUser from "../hooks/useCurrentUser";
 
 const drawerWidth = 240;
@@ -24,6 +25,7 @@ const drawerWidth = 240;
 function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isAdmin] = useAdmin();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -39,35 +41,90 @@ function Dashboard(props) {
       {/* list of section on dashboard */}
       <List>
         <div>
-          {userRole === 'donor' && <div>
-            <Link to="/dashboard/user">
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <div>
-                    <ListItemIcon>
-                      <AddHomeIcon />
-                    </ListItemIcon>
-                  </div>
-                  <h1>Dashboard Home</h1>
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          </div>}
-          {userRole === 'admin' && <div>
-            <Link to="/dashboard/admin">
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <div>
-                    <ListItemIcon>
-                      <AddHomeIcon />
-                    </ListItemIcon>
-                  </div>
-                  <h1>Dashboard Home</h1>
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          </div>}
-          
+          {userRole === "donor" && (
+            <div>
+              <Link to="/dashboard/userHome">
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <div>
+                      <ListItemIcon>
+                        <AddHomeIcon />
+                      </ListItemIcon>
+                    </div>
+                    <h1>Dashboard Home</h1>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </div>
+          )}
+          {isAdmin && (
+            <div>
+              <div>
+                <Link to="/dashboard/adminHome">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <AddHomeIcon />
+                        </ListItemIcon>
+                      </div>
+                      <h1>Dashboard Home</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+              <Divider />
+              <div>
+                <Link to="/dashboard/allusers">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        </ListItemIcon>
+                      </div>
+                      <h1>All Users</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+              <Divider />
+
+              <div>
+                <Link to="/dashboard/all-blood-donation-request">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        </ListItemIcon>
+                      </div>
+                      <h1>All Donation Request</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+              <Divider />
+
+              <div>
+                <Link to=" /dashboard/content-management">
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <div>
+                        <ListItemIcon>
+                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        </ListItemIcon>
+                      </div>
+                      <h1>Content Management</h1>
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </div>
+
+              <Divider />
+            </div>
+          )}
+
           <div>
             <Link to="/dashboard/profile">
               <ListItem disablePadding>
@@ -82,6 +139,7 @@ function Dashboard(props) {
               </ListItem>
             </Link>
           </div>
+          <Divider />
           <div>
             <Link to="/dashboard/my-donation-requests">
               <ListItem disablePadding>
@@ -96,6 +154,8 @@ function Dashboard(props) {
               </ListItem>
             </Link>
           </div>
+          <Divider />
+        
           <div>
             <Link to="/dashboard/create-donation-request">
               <ListItem disablePadding>
@@ -110,66 +170,33 @@ function Dashboard(props) {
               </ListItem>
             </Link>
           </div>
-          {userRole === "admin" && (
-            <div>
-              <Link to="/dashboard/allusers">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <div>
-                      <ListItemIcon>
-                        <VscGitPullRequestGoToChanges className="text-xl" />
-                      </ListItemIcon>
-                    </div>
-                    <h1>All Users</h1>
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-            </div>
-          )}
-          {userRole === "admin" && (
-            <div>
-              <Link to="/dashboard/all-blood-donation-request">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <div>
-                      <ListItemIcon>
-                        <VscGitPullRequestGoToChanges className="text-xl" />
-                      </ListItemIcon>
-                    </div>
-                    <h1>All Donation Request</h1>
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-            </div>
-          )}
-          {userRole === "admin" && (
-            <div>
-              <Link to=" /dashboard/content-management">
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <div>
-                      <ListItemIcon>
-                        <VscGitPullRequestGoToChanges className="text-xl" />
-                      </ListItemIcon>
-                    </div>
-                    <h1>Content Management</h1>
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-            </div>
-          )}
         </div>
       </List>
       <Divider />
+          <div>
+            <Link to="/dashboard/paymentHistory">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <div>
+                    <ListItemIcon>
+                      <FaRegPenToSquare className="text-xl" />
+                    </ListItemIcon>
+                  </div>
+                  <h1>Donation History</h1>
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          </div>
+          <Divider />
 
-      <Divider />
-
-      <List className="text-center">
+    <div  className="text-center mt-10">
+    <List>
         <Link to="/">
           {" "}
           <button className="btn text-center btn-sm ">Go Back to home</button>
         </Link>
       </List>
+    </div>
     </div>
   );
 

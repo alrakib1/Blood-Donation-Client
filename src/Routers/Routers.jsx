@@ -24,6 +24,9 @@ import Blogs from "../pages/Blogs/Blogs";
 import BlogDetails from "../pages/dashboard/Request Details/BlogDetails";
 import Search from "../pages/Search/Search";
 import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
+import Funding from "../pages/Funding/Funding";
+import Payment from "../pages/Payment/Payment";
+import DonationHistory from "../pages/dashboard/DonationHistory/DonationHistory";
 
     const Routers = createBrowserRouter([
         {
@@ -63,6 +66,18 @@ import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
                 element:<Search></Search>
             }
             ,
+            {
+                path: '/funding',
+                element:<Funding></Funding>
+            }
+            ,
+            {
+                path: '/donate',
+                element:<PrivateRoute>
+                  <Payment></Payment>
+                </PrivateRoute>
+            }
+            ,
           ]
         },
         {
@@ -72,14 +87,16 @@ import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
           </PrivateRoute>,
           children:[
             {
-              path:'/dashboard/user',
+              path:'/dashboard/userHome',
               element:<DashboardHome></DashboardHome>
             },
             
             {
-              path:'/dashboard/admin',
-              element:<AdminHome></AdminHome>
+              path:'/dashboard/paymentHistory',
+              element:<DonationHistory></DonationHistory>
             },
+            
+           
 
             {
               path:'/dashboard/profile',
@@ -113,6 +130,12 @@ import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
               path: '/dashboard/allusers',
               element: <AdminRoute>
                 <AllUsers></AllUsers>
+              </AdminRoute>
+            },
+            {
+              path:'/dashboard/adminHome',
+              element:<AdminRoute>
+                <AdminHome></AdminHome>
               </AdminRoute>
             }
             ,

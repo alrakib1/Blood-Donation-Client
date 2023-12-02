@@ -5,8 +5,11 @@ import { Link, NavLink } from "react-router-dom";
 
 import useAuth from "../../../hooks/useAuth";
 import "./Navbar.css";
+import useAdmin from "../../../hooks/useAdmin";
 const Navbar = () => {
   const { user,logout } = useAuth();
+  const [isAdmin] =useAdmin();
+
 
   const navLinks = (
     <>
@@ -24,14 +27,14 @@ const Navbar = () => {
       {user ? (
         <>
           {" "}
-          {/* {
-       user && isAdmin && <li><Link to='/dashboard/admin'>Dashboard</Link></li>
+          {
+       user && isAdmin && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
 
       }
       {
-       user && !isAdmin && <li><Link to='/dashboard/user'>Dashboard</Link></li>
+       user && !isAdmin && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
 
-      } */}
+      }
           <li>
             <NavLink to="/funding">Fundings</NavLink>
           </li>
@@ -50,7 +53,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-white text-red-600 font-semibold">
+    <div className="navbar bg-white text-red-600 font-semibold border-b-2 border-l-2 border-r-2 border-red-500">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
