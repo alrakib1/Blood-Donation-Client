@@ -1,11 +1,9 @@
-
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
-
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://blood-donation-server-six.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -32,7 +30,7 @@ const useAxiosSecure = () => {
     },
     async (error) => {
       const status = error?.response?.status;
-     
+
       if (status === 401 || status === 403) {
         await logout();
         navigate("/login");
