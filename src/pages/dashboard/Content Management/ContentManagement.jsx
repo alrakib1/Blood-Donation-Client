@@ -21,7 +21,7 @@ const {currentUser} = useCurrentUser();
   );
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -45,7 +45,7 @@ const {currentUser} = useCurrentUser();
     });
   };
   const handlePublish = async (id) => {
-    console.log(id);
+    // console.log(id);
     const res = await axiosSecure.patch(`/blogs/${id}`);
     // console.log(res.data)
     if (res.data.modifiedCount > 0) {

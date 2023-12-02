@@ -6,7 +6,7 @@ const Payment = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_GATEWAY);
   return (
 
-    <div className=" bg-violet-400 ">
+    <div className=" bg-violet-400 h-screen flex justify-center items-center ">
       <div>
         <Elements stripe={stripePromise}>
         

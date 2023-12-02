@@ -33,7 +33,7 @@ const CheckoutFrom = () => {
      axiosSecure
         .post("/create-payment-intent", { price: totalDonation })
         .then((res) => {
-          console.log(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -68,11 +68,11 @@ const CheckoutFrom = () => {
     });
 
     if (error) {
-      console.log("[error]", error);
+      
       setError(error.message);
     } else {
       setError("");
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
     }
 
     // confirm payment
@@ -87,9 +87,15 @@ const CheckoutFrom = () => {
         },
       });
     if (confirmError) {
-      console.log(confirmError, "confirm error");
+      // console.log(confirmError, "confirm error");
+      Swal.fire({
+        icon: "error",
+        title: `${confirmError.message}`
+        
+       
+      });
     } else {
-      console.log(paymentIntent, "payment intent");
+      // console.log(paymentIntent, "payment intent");
       if (paymentIntent.status === "succeeded") {
         // console.log("transaction id", paymentIntent.id);
         setTransaction(paymentMethod.id);
@@ -124,9 +130,9 @@ const CheckoutFrom = () => {
   };
 
   return (
-    <div className="h-screen pt-20 w-1/2 mx-auto">
+    <div className=" bg-slate-100 shadow-lg p-5 mx-auto">
       <div className="mb-10">
-        <span className="mr-5 text-xl font-bold">Select an amount for donation</span>
+        <span className="my-5 text-xl font-bold">Select an amount for donation</span>
         <select
           className="select select-bordered w-full max-w-xs"
           value={selectedOption}
@@ -139,14 +145,16 @@ const CheckoutFrom = () => {
             </option>
           ))}
         </select>
+        
         {selectedOption === 0 && (
-          <input
-            type="number"
-            className="input input-bordered mt-2"
-            placeholder="Enter custom amount"
-            value={customPrice}
-            onChange={handleCustomPriceChange}
-          />
+         <> <p className="my-2 font-bold">Or enter a custom amount</p>
+         <input
+           type="number"
+           className="input input-bordered mt-2"
+           placeholder="Enter custom amount"
+           value={customPrice}
+           onChange={handleCustomPriceChange}
+         /></>
         )}
       </div>
       <form onSubmit={handleSubmit}>
@@ -161,7 +169,7 @@ const CheckoutFrom = () => {
               },
             },
             invalid: {
-              color: "#9e2146",
+              color: "#F2484B",
             },
           },
         }}

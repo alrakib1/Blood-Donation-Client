@@ -14,7 +14,7 @@ const DashboardHome = () => {
   const selectedRequests = sortedRequest.slice(0, 3);
 
   const handleDone = async (id) => {
-    console.log("done btn clicked");
+    // console.log("done btn clicked");
     const data = {
       donationStatus: "done",
     };

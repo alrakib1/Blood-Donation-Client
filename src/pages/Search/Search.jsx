@@ -29,7 +29,7 @@ const searched= searchedUser[0];
     }
 
     const { users} = useUsers();
-    console.log(users)
+    // console.log(users)
     return (
         <div className="h-screen p-5 bg-violet-500">
              <form onSubmit={handleSubmit(onSubmit)}>
