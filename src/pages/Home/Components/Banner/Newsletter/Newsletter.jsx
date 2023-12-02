@@ -69,6 +69,7 @@ const NewSletter = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      e.target.reset();
     }
   };
   return (

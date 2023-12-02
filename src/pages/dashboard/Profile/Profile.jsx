@@ -50,11 +50,11 @@ const Profile = () => {
         avatar,
       };
 
-      const result = await axiosPublic.patch(
+      const result =await axiosPublic.patch(
         `/user?email=${user?.email}`,
         updatedProfile
       );
-   
+  
       if (result.data.modifiedCount > 0) {
         refetch();
         setEditProfile(false);

@@ -16,11 +16,11 @@ const Home = () => {
             <h1 className="text-3xl font-bold"> Some Photos from our campaigns</h1>
             <Gallery></Gallery>
            </div>
+           <div className=" text-center mt-10">
+            <AboutUs></AboutUs>
+           </div>
            <div className="">
             <NewSletter></NewSletter>
-           </div>
-           <div className=" text-center">
-            <AboutUs></AboutUs>
            </div>
         </div>
     );
