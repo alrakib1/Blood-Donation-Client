@@ -59,6 +59,8 @@ const {user}=useAuth();
       },
     });
 
+    console.log(res.data, 'for image')
+
     if (res.data.success) {
       // image url from image bb
 
@@ -95,13 +97,13 @@ const {user}=useAuth();
             navigate("/");
           }
         })
-        .catch(() => {
-          // console.log(error);
+        .catch((error) => {
+          console.log(error);
        
           Swal.fire({
             position: "center",
             icon: "error",
-            title: "This email is registered with another account",
+            title: "This email is already registered with another account",
             showConfirmButton: false,
             timer: 2000,
           });
