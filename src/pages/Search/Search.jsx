@@ -31,7 +31,7 @@ const searched= searchedUser[0];
     const { users} = useUsers();
     // console.log(users)
     return (
-        <div className="h-screen p-5 bg-violet-500">
+        <div className="p-5 bg-violet-500">
              <form onSubmit={handleSubmit(onSubmit)}>
              <p className="text-sm font-semibold mb-1 mt-5 text-white">
                     Email
