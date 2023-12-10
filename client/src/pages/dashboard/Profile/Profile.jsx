@@ -93,7 +93,7 @@ const Profile = () => {
                 style={{ maxWidth: "150px" }}
               />
             </div>
-            <div className="pt-5">
+            <div className="pt-5 text-white">
               <h2 className="text-2xl font-semibold">
                 Name: {loggedInUser?.name || user?.displayName}
               </h2>
@@ -112,7 +112,7 @@ const Profile = () => {
                 <span
                   style={
                     loggedInUser?.status === "active"
-                      ? { color: "green" }
+                      ? { color: "black" }
                       : { color: "red" }
                   }
                 >
@@ -128,21 +128,18 @@ const Profile = () => {
 
       <button
         onClick={handleEditProfile}
-        className="btn text-white mt-5"
-        style={
-          editProfile ? { background: "black" } : { background: "#EF4444" }
-        }
+        className=" py-2 px-2 rounded-md transition delay-200 bg-red-800 hover:bg-slate-700 text-white mt-5"
       >
         {editProfile ? "Cancel" : "Edit Profile"}
       </button>
       {/* update profile section */}
       {editProfile && (
-        <section className="mt-4">
+        <section className="mt-4 ">
           {currentUser.map((user) => (
             <div key={user._id}>
-              <div className="bg-red-500 shadow-lg">
-                <div className="p-2">
-                  <h3 className="text-xl lg:text-3xl mb-2 text-center font-bold text-white">
+              <div className="bg-red-500 shadow-lg px-3 rounded-md text-sm">
+                <div className="p-2 py-6">
+                  <h3 className="text-2xl  mb-2 text-center font-bold text-white">
                     Update your profile
                   </h3>
                   <form onSubmit={handleSubmit(onSubmit)}>
@@ -153,7 +150,7 @@ const Profile = () => {
                       {...register("name", { required: true })}
                       type="text"
                       defaultValue={user.name}
-                      className="input input-bordered md:w-1/2"
+                      className=" py-2 px-2 rounded-md  input-bordered md:w-1/2"
                     />
 
                     <p className="text-sm font-semibold mt-5 mb-1 text-white">
@@ -173,7 +170,7 @@ const Profile = () => {
                         <select
                           defaultValue={user.group}
                           {...register("group", { required: true })}
-                          className="select select-bordered w-full"
+                          className="py-2 px-2 rounded-md  select-bordered w-full"
                         >
                           <option value="A+">A+</option>
                           <option value="A-">A-</option>
@@ -194,7 +191,7 @@ const Profile = () => {
                         <select
                           defaultValue={user.upazila}
                           {...register("upazila", { required: true })}
-                          className="select select-bordered w-full"
+                          className="py-2 px-2 rounded-md select-bordered w-full"
                         >
                           {upazilas.map((option, index) => (
                             <option key={index} value={option.name}>
@@ -210,7 +207,7 @@ const Profile = () => {
                         <select
                           defaultValue={user.district}
                           {...register("district", { required: true })}
-                          className="select select-bordered w-full"
+                          className="py-2 px-2 rounded-md  select-bordered w-full"
                         >
                           {districts.map((option, index) => (
                             <option key={index} value={option.name}>
@@ -224,7 +221,7 @@ const Profile = () => {
                     <br />
                     <button
                       type="submit"
-                      className="text-red-500 shadow-lg btn bg-white border-0 mb-2 hover:bg-blue-500 hover:text-white"
+                      className="text-red-500 shadow-lg px-2 py-1 rounded-md transition delay-200 bg-white border-0 mb-2 hover:bg-blue-500 hover:text-white"
                     >
                       Update
                     </button>

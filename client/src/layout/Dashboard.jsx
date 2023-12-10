@@ -323,13 +323,17 @@ function Dashboard(props) {
       <Box
         component="main"
         sx={{
+          background: '#147C72',
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />
+        <div className="min-h-screen">
         <Outlet></Outlet>
+
+        </div>
       </Box>
     </Box>
   );
