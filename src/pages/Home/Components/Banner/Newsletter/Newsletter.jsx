@@ -37,6 +37,7 @@ const NewSletter = () => {
               fullWidth
               label="Your Message"
               // id="fullWidth"
+              sx={{color:'#ffff'}}
               
             />
           {/* <textarea className="textarea textarea-bordered"  placeholder="Your Feedback" ></textarea> */}
@@ -46,9 +47,9 @@ const NewSletter = () => {
               fullWidth
               label="Email"
               id="fullWidth"
-              sx={{color:"white"}}
+              sx={{color:"#ffff"}}
             />
-            <Button type="submit" sx={{color:'white'}} variant="contained" endIcon={<SendIcon />}>
+            <Button type="submit" sx={{color:'#ffff'}} variant="contained" endIcon={<SendIcon />}>
               Submit
             </Button>
           </form>

@@ -48,6 +48,7 @@ const RequestDetails = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      onclose();
       refetch();
     }
   };
