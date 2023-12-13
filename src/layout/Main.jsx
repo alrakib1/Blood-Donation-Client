@@ -5,9 +5,11 @@ import Footer from "../Components/Shared/Footer/Footer";
 
 const Main = () => {
     return (
-        <div className="bg-slate-300">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-900 text-white">
             <Navbar></Navbar>
-            <Outlet/>
+           <div className="min-h-screen ">
+           <Outlet/>
+           </div>
             <Footer/>
         </div>
     );

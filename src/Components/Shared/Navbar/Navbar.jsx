@@ -58,7 +58,7 @@ const role = currentUser[0]?.role;
     </>
   );
   return (
-    <div className="navbar bg-white text-red-600 font-semibold border-b-2 border-l-2 border-r-2 border-red-500">
+    <div className="navbar bg-[#008080]  text-white font-semibold border-b-2 border-l-2 border-r-2 border-green-400">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

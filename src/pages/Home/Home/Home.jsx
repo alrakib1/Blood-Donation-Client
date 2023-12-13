@@ -12,10 +12,11 @@ const Home = () => {
            <div className="">
            <Banner/>
            </div>
-           <div className="flex flex-col gap-10 justify-center items-center mt-10">
-            <h1 className="text-3xl font-bold"> Some Photos from our campaigns</h1>
-            <Gallery></Gallery>
+            <h1 className="text-3xl  my-10 text-center font-bold"> Some Photos from our campaigns</h1>
+           <div className="md:w-6/12 mx-auto flex justify-center">
+           <Gallery></Gallery>
            </div>
+           
            <div className=" text-center mt-10">
             <AboutUs></AboutUs>
            </div>

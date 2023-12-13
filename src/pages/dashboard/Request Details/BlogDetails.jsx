@@ -33,7 +33,7 @@ const BlogDetails = () => {
 //   console.log(blog && blog.content && blog.content.content);
 
   return (
-    <div className= "bg-gray-100 shadow-lg pt-5">
+    <div className= "shadow-lg pt-5 min-h-screen">
       <Helmet>
         <title>Blog | Details</title>
       </Helmet>

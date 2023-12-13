@@ -3,7 +3,7 @@
 const AboutUs = () => {
     return (
         <div >
-            <div className="collapse border-b-2 bg-[#CBD5E1]">
+            <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
   <input type="radio" name="my-accordion-1" /> 
   <div className="collapse-title text-xl font-medium">
   About Blood Donation
@@ -12,7 +12,7 @@ const AboutUs = () => {
     <p>Welcome to Blood Donation!</p>
   </div>
 </div>
-<div className="collapse border-b-2 bg-[#CBD5E1]">
+<div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
   <input type="radio" name="my-accordion-1" /> 
   <div className="collapse-title text-xl font-medium">
   Our Mission
@@ -21,7 +21,7 @@ const AboutUs = () => {
     <p>At Blood Donation, our mission is to save lives through voluntary blood donation. We believe that every donor is a hero, and together, we can make a significant impact on the health and well-being of individuals in need.</p>
   </div>
 </div>
-<div className="collapse border-b-2 bg-[#CBD5E1]">
+<div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
   <input type="radio" name="my-accordion-1" /> 
   <div className="collapse-title text-xl font-medium">
   Who We Are
@@ -30,7 +30,7 @@ const AboutUs = () => {
     <p>We are a dedicated team of individuals passionate about making a difference in our communities. Our platform serves as a bridge between blood donors and those requiring life-saving transfusions. We aim to create a network of caring individuals who understand the importance of giving back.</p>
   </div>
 </div>
-<div className="collapse border-b-2 bg-[#CBD5E1]">
+<div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
   <input type="radio" name="my-accordion-1" /> 
   <div className="collapse-title text-xl font-medium">
   Why Donate Blood?
