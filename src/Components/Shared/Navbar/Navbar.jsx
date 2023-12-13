@@ -105,14 +105,14 @@ const role = currentUser[0]?.role;
             </div>
           </div>
          
-          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li>
+          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#008080] rounded-box w-52">
+        <li className="hover:bg-blue-900 rounded-md ">
           <Link to='/dashboard/profile' className="justify-between">
             Profile
-        
           </Link>
         </li>
-        <li><a onClick={()=>logout()} className="hover:bg-red-500 hover:text-white">Logout</a></li>
+        <li className="border-b-2 border-white bg-white"></li>
+        <li><p onClick={()=>logout()} className="hover:bg-red-500 hover:text-white">Logout</p></li>
       </ul>
         </div>
   

@@ -130,7 +130,7 @@ const CheckoutFrom = () => {
   };
 
   return (
-    <div className=" bg-slate-100 shadow-lg p-5 mx-auto">
+    <div className=" bg-slate-100 text-black shadow-lg p-5 mx-auto">
       <div className="mb-10">
         <span className="my-5 text-xl font-bold">Select an amount for donation</span>
         <select

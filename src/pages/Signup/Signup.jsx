@@ -129,7 +129,7 @@ const {user}=useAuth();
         <h3 className="text-xl lg:text-3xl mb-4 text-center font-bold text-white">
           Join us and help us to save lives
         </h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className="text-black" onSubmit={handleSubmit(onSubmit)}>
           <p className="text-sm font-semibold mb-2 text-white">Name*</p>
           <input
             {...register("name", { required: true })}

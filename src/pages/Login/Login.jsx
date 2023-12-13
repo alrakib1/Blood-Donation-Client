@@ -52,12 +52,12 @@ const Login = () => {
       <Helmet>
         <title>Blood Donation | Login</title>
       </Helmet>
-      <div className="h-[75vh] flex justify-center mb-10 items-center bg-red-500">
+      <div className="min-h-screen flex justify-center mb-10 items-center bg-red-500 ">
         <div className="w-full">
           <h3 className="text-center text-white text-2xl font-bold">
             Login Here
           </h3>
-          <form className="card-body" onSubmit={handleLogin}>
+          <form className="card-body text-black" onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white">Email</span>
