@@ -48,11 +48,11 @@ const Login = () => {
 
 
   return (
-    <div>
+    <div className="max-w-lg mx-auto font-bold   ">
       <Helmet>
         <title>Blood Donation | Login</title>
       </Helmet>
-      <div className="min-h-screen flex justify-center mb-10 items-center bg-red-500 ">
+      <div className=" flex justify-center   mb-10 items-center bg-red-500 ">
         <div className="w-full">
           <h3 className="text-center text-white text-2xl font-bold">
             Login Here

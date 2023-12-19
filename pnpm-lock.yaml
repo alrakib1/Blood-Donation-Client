@@ -56,6 +56,9 @@ dependencies:
   match-sorter:
     specifier: ^6.3.1
     version: 6.3.1
+  prop-types:
+    specifier: ^15.8.1
+    version: 15.8.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -83,6 +86,9 @@ dependencies:
   sweetalert2:
     specifier: ^11.10.1
     version: 11.10.1
+  swiper:
+    specifier: ^11.0.5
+    version: 11.0.5
 
 devDependencies:
   '@types/react':
@@ -5309,6 +5315,11 @@ packages:
 
   /sweetalert2@11.10.1:
     resolution: {integrity: sha512-qu145oBuFfjYr5yZW9OSdG6YmRxDf8CnkgT/sXMfrXGe+asFy2imC2vlaLQ/L/naZ/JZna1MPAY56G4qYM0VUQ==}
+    dev: false
+
+  /swiper@11.0.5:
+    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
+    engines: {node: '>= 4.7.0'}
     dev: false
 
   /tailwindcss@3.3.6:
