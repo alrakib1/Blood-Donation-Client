@@ -5,9 +5,9 @@ import Footer from "../Components/Shared/Footer/Footer";
 
 const Main = () => {
     return (
-        <div className="bg-gradient-to-r from-teal-500 to-teal-900">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-900  font-Font-Nunito">
             <Navbar></Navbar>
-           <div className="">
+           <div className="min-h-[calc(100vh-228px)]">
            <Outlet/>
            </div>
             <Footer/>

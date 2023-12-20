@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Banner from "../Components/Banner/Banner";
 import NewSletter from "../Components/Banner/Newsletter/Newsletter";
 import AboutUs from "../Components/About Us/AboutUs";
-import Gallery from "../Components/Gallery/Gallery";
+// import Gallery from "../Components/Gallery/Gallery";
 
 
 const Home = () => {

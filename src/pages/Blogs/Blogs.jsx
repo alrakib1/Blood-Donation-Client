@@ -14,8 +14,8 @@ const Blogs = () => {
         <title>Blood Donation | Blogs</title>
       </Helmet>
       {isLoading ? (
-        <div className="mt-10 flex justify-center items-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5">
+        <div className=" flex justify-center items-center">
+          <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5">
             <Stack>
               <Skeleton
                 variant="rectangular"
@@ -123,7 +123,7 @@ const Blogs = () => {
           </div>
         </div>
       ) : (
-        <div className="mt-10 mb-10 text-black">
+        <div className=" pt-10 text-black">
           <div className="flex justify-center">
             {blogs.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-5">

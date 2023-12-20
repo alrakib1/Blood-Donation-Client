@@ -33,7 +33,7 @@ const BlogDetails = () => {
 //   console.log(blog && blog.content && blog.content.content);
 
   return (
-    <div className= "shadow-lg pt-5 min-h-screen">
+    <div className= "shadow-2xl shadow-slate-600-950 bg-slate-100 pt-5  max-w-screen-lg mx-auto font-Font-Lora">
       <Helmet>
         <title>Blog | Details</title>
       </Helmet>

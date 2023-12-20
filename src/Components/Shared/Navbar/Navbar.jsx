@@ -16,9 +16,6 @@ const role = currentUser[0]?.role;
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
         <NavLink to="/requests">Donation Requests</NavLink>
       </li>
       <li>
@@ -84,7 +81,7 @@ const role = currentUser[0]?.role;
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link to="/" className="flex items-center justify-center-center gap-2 text-xl">
           <img
             className="w-8"
             src="https://i.ibb.co/MZbwWpp/205916-removebg-preview.png"
