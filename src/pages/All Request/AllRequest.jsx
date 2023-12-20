@@ -6,6 +6,8 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 
+import image from '../../assets/banner1.jpg'
+
 const AllRequest = () => {
   const axiosPublic = useAxiosPublic();
   const { data: requests = [], isLoading } = useQuery({
@@ -17,7 +19,7 @@ const AllRequest = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#14AE9E]">
+    <div className=" max-w-screen-xl mx-auto pb-5">
       <Helmet>
         <title>Blood Donation | All</title>
       </Helmet>

@@ -2,7 +2,7 @@ import Description from "./Description";
 
 const Funding = () => {
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto">
       <Description></Description>
     </div>
   );
