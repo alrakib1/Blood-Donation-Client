@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -13,11 +12,9 @@ const UpdateRequest = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const { districts, upazilas } = useArea();
-  const {requests,refetch} = useParticularRequest();
-
+  const { requests, refetch } = useParticularRequest();
 
   const onSubmit = async (data) => {
-
     const recipientName = data.name;
     const requiredBloodGroup = data.requiredGroup;
     const upazila = data.upazila;
@@ -40,11 +37,10 @@ const UpdateRequest = () => {
       message,
     };
 
-
     const res = await axiosSecure.patch(`/request/${params.id}`, updatedData);
     // console.log(res.data);
     if (res.data?.modifiedCount > 0) {
-        refetch();
+      refetch();
       reset();
       Swal.fire({
         position: "center",
@@ -59,8 +55,8 @@ const UpdateRequest = () => {
   return (
     <div>
       <Helmet>
-      <title>Blood Donation | Update</title>
-    </Helmet>
+        <title>LifeFlowDonor | Update</title>
+      </Helmet>
       <section>
         <div className="bg-violet-500 shadow-lg">
           <div className="p-4">

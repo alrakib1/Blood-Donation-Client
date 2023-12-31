@@ -57,7 +57,7 @@ const AddBlog = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Add Blog</title>
+        <title>LifeFlowDonor | Add Blog</title>
       </Helmet>
       <h2 className="text-center text-xl font-bold my-5">Add blog</h2>
       <div>

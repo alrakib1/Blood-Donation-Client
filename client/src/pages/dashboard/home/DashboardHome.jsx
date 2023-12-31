@@ -66,7 +66,7 @@ const DashboardHome = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Dashboard</title>
+        <title>LifeFlowDonor | Dashboard</title>
       </Helmet>
       <h1 className="text-2xl font-semibold">Welcome {user?.displayName}</h1>
 
@@ -173,6 +173,5 @@ const DashboardHome = () => {
     </div>
   );
 };
-
 
 export default DashboardHome;

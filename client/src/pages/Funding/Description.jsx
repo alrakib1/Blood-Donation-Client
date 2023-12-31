@@ -6,7 +6,7 @@ const Description = () => {
     <div>
       <section className="p-10">
         <h2 className="text-2xl font-bold mb-5">
-          Support Blood Donation Initiatives with Your Contribution
+          Support LifeFlowDonor Initiatives with Your Contribution
         </h2>
 
         <p>
@@ -50,9 +50,9 @@ const Description = () => {
           </h3>
           <p>
             Every dollar you contribute goes directly towards ensuring that our
-            blood donation programs are efficient, sustainable, and able to
-            reach those who need it the most. Your support is the driving force
-            behind our mission to make a positive impact on countless lives.
+            LifeFlowDonor programs are efficient, sustainable, and able to reach
+            those who need it the most. Your support is the driving force behind
+            our mission to make a positive impact on countless lives.
           </p>
         </div>
 
@@ -66,7 +66,7 @@ const Description = () => {
           </p>
           <p>
             <Link
-              to='/donate'
+              to="/donate"
               className="bg-red-500 p-2 text-white hover:bg-green-500 hover:text-white "
             >
               Donate Now and Be a Lifesaver! 🌟

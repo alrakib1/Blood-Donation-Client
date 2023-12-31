@@ -11,7 +11,7 @@ const Blogs = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Blogs</title>
+        <title>LifeFlowDonor | Blogs</title>
       </Helmet>
       {isLoading ? (
         <div className=" flex justify-center items-center">

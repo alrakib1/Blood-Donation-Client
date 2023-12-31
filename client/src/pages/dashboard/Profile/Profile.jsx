@@ -81,7 +81,7 @@ const Profile = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Profile</title>
+        <title>LifeFlowDonor | Profile</title>
       </Helmet>
       <div>
         <div>

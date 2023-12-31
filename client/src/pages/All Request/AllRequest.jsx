@@ -21,7 +21,7 @@ const AllRequest = () => {
   return (
     <div className=" max-w-screen-xl mx-auto pb-5">
       <Helmet>
-        <title>Blood Donation | All</title>
+        <title>LifeFlowDonor | All</title>
       </Helmet>
 
       <div className="text-white">

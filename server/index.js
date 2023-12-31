@@ -477,9 +477,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Blood Donation server running");
+  res.send("LifeFlowDonor server running");
 });
 
 app.listen(port, () => {
-  console.log(`Blood Donation server running on port ${port}`);
+  console.log(`LifeFlowDonor server running on port ${port}`);
 });

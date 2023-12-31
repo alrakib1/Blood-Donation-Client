@@ -80,7 +80,7 @@ const AllBgRequests = () => {
   return (
     <div className="w-full mt-5">
       <Helmet>
-        <title>Blood Donation |All Requests</title>
+        <title>LifeFlowDonor |All Requests</title>
       </Helmet>
       <div className="mb-10 MuiBox-root">
         <select

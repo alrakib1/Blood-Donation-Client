@@ -11,7 +11,6 @@ const CreateRequest = () => {
   const { register, handleSubmit, reset } = useForm();
   const { districts, upazilas } = useArea();
 
-
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
@@ -67,15 +66,18 @@ const CreateRequest = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Create</title>
+        <title>LifeFlowDonor | Create</title>
       </Helmet>
       <div>
         {status === "blocked" ? (
           <div>
             <h2 className="text-red-500 font-bold text-2xl text-center">
-            You Have been Blocked by the admin. You can not create any post here
-          </h2>
-          <h3 className="text-xl pt-5 text-center font-semibold">if this is a mistake then please contact us</h3>
+              You Have been Blocked by the admin. You can not create any post
+              here
+            </h2>
+            <h3 className="text-xl pt-5 text-center font-semibold">
+              if this is a mistake then please contact us
+            </h3>
           </div>
         ) : (
           <section>

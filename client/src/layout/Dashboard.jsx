@@ -278,7 +278,7 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            <Link to='/'> Blood Donation</Link>
+            <Link to='/'> LifeFlowDonor</Link>
           </Typography>
         </Toolbar>
       </AppBar>

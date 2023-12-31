@@ -55,7 +55,7 @@ const RequestDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>Blood Donation | Details</title>
+        <title>LifeFlowDonor | Details</title>
       </Helmet>
       <ChakraProvider>
         <div className="mt-10 space-y-3">
