@@ -48,7 +48,7 @@ const Login = () => {
     <Container>
       <div className="flex justify-center items-center h-full">
       <Helmet>
-        <title>Blood Donation | Login</title>
+        <title>LifeFlowDonor | Login</title>
       </Helmet>
     <div className="container border mx-auto h-20 "></div>
 
