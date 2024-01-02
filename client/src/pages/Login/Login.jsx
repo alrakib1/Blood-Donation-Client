@@ -20,6 +20,7 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         // console.log(result.user);
+        // dd
 
         if (result.user) {
           Swal.fire({
