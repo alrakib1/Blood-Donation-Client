@@ -16,7 +16,10 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/requests">Donation Requests</NavLink>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/requests">Requests</NavLink>
       </li>
       <li>
         <NavLink to="/blogs">Blogs</NavLink>
@@ -41,7 +44,7 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            <NavLink to="/funding">Fundings</NavLink>
+            <NavLink to="/funding">Funding</NavLink>
           </li>
         </>
       ) : (
@@ -58,7 +61,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#008080]  text-white font-semibold border-b-2 border-l-2 border-r-2 border-green-400">
+    <div className="navbar bg-[#8B0000]  text-white font-semibold">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -89,7 +92,7 @@ const Navbar = () => {
           className="flex items-center justify-center-center gap-2 text-xl"
         >
           <img
-            className="w-8"
+            className="w-6"
             src="https://i.ibb.co/MZbwWpp/205916-removebg-preview.png"
             alt=""
           />
@@ -114,7 +117,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#008080] rounded-box w-52"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#8B0000] rounded-box w-52"
             >
               <li className="hover:bg-blue-900 rounded-md ">
                 <Link to="/dashboard/profile" className="justify-between">
