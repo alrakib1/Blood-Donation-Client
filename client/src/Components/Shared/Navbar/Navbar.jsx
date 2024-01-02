@@ -8,10 +8,10 @@ import "./Navbar.css";
 import useAdmin from "../../../hooks/useAdmin";
 import useCurrentUser from "../../../hooks/useCurrentUser";
 const Navbar = () => {
-  const { user,logout } = useAuth();
-  const [isAdmin] =useAdmin();
-const {currentUser} = useCurrentUser();
-const role = currentUser[0]?.role;
+  const { user, logout } = useAuth();
+  const [isAdmin] = useAdmin();
+  const { currentUser } = useCurrentUser();
+  const role = currentUser[0]?.role;
 
   const navLinks = (
     <>
@@ -21,22 +21,25 @@ const role = currentUser[0]?.role;
       <li>
         <NavLink to="/blogs">Blogs</NavLink>
       </li>
-     
 
       {user ? (
         <>
           {" "}
-          {
-       user && isAdmin  && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
-
-      }
-      {
-        user &&  role =='volunteer' && <li><Link to='/dashboard/adminHome'>Dashboard</Link></li>
-      }
-      {
-       user && role === "donor" && <li><Link to='/dashboard/userHome'>Dashboard</Link></li>
-
-      }
+          {user && isAdmin && (
+            <li>
+              <Link to="/dashboard/adminHome">Dashboard</Link>
+            </li>
+          )}
+          {user && role == "volunteer" && (
+            <li>
+              <Link to="/dashboard/adminHome">Dashboard</Link>
+            </li>
+          )}
+          {user && role === "donor" && (
+            <li>
+              <Link to="/dashboard/userHome">Dashboard</Link>
+            </li>
+          )}
           <li>
             <NavLink to="/funding">Fundings</NavLink>
           </li>
@@ -81,40 +84,55 @@ const role = currentUser[0]?.role;
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="flex items-center justify-center-center gap-2 text-xl">
+        <Link
+          to="/"
+          className="flex items-center justify-center-center gap-2 text-xl"
+        >
           <img
             className="w-8"
             src="https://i.ibb.co/MZbwWpp/205916-removebg-preview.png"
             alt=""
           />
-          Donate Blood
+          LifeFlowDonor
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user && <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+        {user && (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+              </div>
             </div>
+
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#008080] rounded-box w-52"
+            >
+              <li className="hover:bg-blue-900 rounded-md ">
+                <Link to="/dashboard/profile" className="justify-between">
+                  Profile
+                </Link>
+              </li>
+              <li className="border-b-2 border-white bg-white"></li>
+              <li>
+                <p
+                  onClick={() => logout()}
+                  className="hover:bg-red-500 hover:text-white"
+                >
+                  Logout
+                </p>
+              </li>
+            </ul>
           </div>
-         
-          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#008080] rounded-box w-52">
-        <li className="hover:bg-blue-900 rounded-md ">
-          <Link to='/dashboard/profile' className="justify-between">
-            Profile
-          </Link>
-        </li>
-        <li className="border-b-2 border-white bg-white"></li>
-        <li><p onClick={()=>logout()} className="hover:bg-red-500 hover:text-white">Logout</p></li>
-      </ul>
-        </div>
-  
-        
-        }
+        )}
       </div>
     </div>
   );

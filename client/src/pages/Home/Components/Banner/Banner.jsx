@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import image1 from '../../../../assets/banner1.jpg'
 import image2 from '../../../../assets/banner2.jpg'
 
+import background from '../../../../assets/samuel-regan-asante-JjlkGAc4OUM-unsplash.jpg'
 
 // Import Swiper styles
 import "swiper/css";
@@ -24,7 +25,7 @@ const Banner = () => {
     const {user} = useAuth();
     return (
      
-            <div className="max-w-screen-lg mx-auto">
+            <div className="bg-no-repeat bg-contain w-screen min-h-screen" style={{backgroundImage: `url(${background})`}}>
               <div className="flex flex-col justify-center items-center mt-10 space-y-5">
             <h2 className="text-3xl font-semibold px-2 text-center text-white">Our mission is to save as many life as possible</h2>
             <div className="">
@@ -37,7 +38,7 @@ const Banner = () => {
 
                 {/* slider */}
 
-
+{/* 
          <div className="max-w-5xl mx-auto">
          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
        
@@ -61,7 +62,7 @@ const Banner = () => {
      
        
       </Swiper>
-         </div>
+         </div> */}
             
             </div>
             </div>

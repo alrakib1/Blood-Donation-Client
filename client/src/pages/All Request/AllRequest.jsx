@@ -6,7 +6,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 
-import image from '../../assets/banner1.jpg'
+
 
 const AllRequest = () => {
   const axiosPublic = useAxiosPublic();
@@ -19,17 +19,17 @@ const AllRequest = () => {
   });
 
   return (
-    <div className=" max-w-screen-xl mx-auto pb-5">
+    <div className=" max-w-screen-xl mx-auto my-10 border rounded-md px-5">
       <Helmet>
         <title>LifeFlowDonor | All</title>
       </Helmet>
 
       <div className="text-white">
-        <h3 className="text-2xl font-semibold text-center pt-10 mb-10">
+        <h3 className="text-2xl font-semibold text-center py-10">
           All Requests
         </h3>
         <div className="overflow-x-auto">
-          <table className="table table-xs">
+          <table className="table table-xs mb-7">
             <thead>
               <>
                 {isLoading ? (

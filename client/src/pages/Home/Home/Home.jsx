@@ -13,11 +13,6 @@ const Home = () => {
       <div className="">
         <Banner />
       </div>
-      {/* <h1 className="text-3xl  my-10 text-center font-bold text-white"> Some Photos from our campaigns</h1>
-           <div className="md:w-6/12 mx-auto flex justify-center">
-           <Gallery></Gallery>
-           </div> */}
-
       <div className=" text-center mt-10">
         <AboutUs></AboutUs>
       </div>
