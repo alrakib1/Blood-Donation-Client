@@ -33,11 +33,11 @@ const BlogDetails = () => {
 //   console.log(blog && blog.content && blog.content.content);
 
   return (
-    <div className= "shadow-2xl shadow-slate-600-950 bg-slate-50 pt-5  max-w-screen-lg mx-auto font-Font-Lora">
+    <div className= "shadow-2xl shadow-slate-950 bg-slate-50 my-5 rounded-sm  max-w-screen-lg mx-auto font-Font-Lora">
       <Helmet>
-        <title>Blog | Details</title>
+        <title>{blog.title} | Details</title>
       </Helmet>
-      <h1 className="text-3xl text-center font-bold">{blog.title}</h1>
+      <h1 className="text-3xl text-center font-bold pt-3">{blog.title}</h1>
       <div className="mx-auto mb-10 pt-5 max-w-[640px] max-h-[336px]">
         {" "}
         <img className="min-w-[320px] mx-auto md:min-w-[400px] md:min-h-[250px] lg:min-w-[640px] lg:min-h-[336px] max-w-[320px] md:max-w-[400px] md:max-h-[250px] lg:max-w-[640px] lg:max-h-[336px]" src={blog.image} alt={blog.title} />

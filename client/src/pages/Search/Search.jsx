@@ -35,7 +35,8 @@ const Search = () => {
   // console.log(searchedUser);
 
   return (
-    <div className="p-5 bg-violet-500 text-black min-h-screen">
+   <div className="container mx-auto">  
+     <div className="p-5 bg-violet-500 text-black min-h-screen">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex gap-10 my-5">
           <div className="md:w-1/2">
@@ -133,7 +134,7 @@ const Search = () => {
                 {isLoading ? (
                   <Stack>
                     <Skeleton
-                      width="70vw"
+                      width="100vw"
                       height={30}
                       variant="text"
                       sx={{ fontSize: "1rem" }}
@@ -157,7 +158,7 @@ const Search = () => {
                   <>
                     <Stack>
                       <Skeleton
-                        width="70vw"
+                        width="100vw"
                         height={30}
                         variant="text"
                         sx={{ fontSize: "1rem" }}
@@ -165,7 +166,7 @@ const Search = () => {
                     </Stack>{" "}
                     <Stack>
                       <Skeleton
-                        width="70vw"
+                        width="100vw"
                         height={30}
                         variant="text"
                         sx={{ fontSize: "1rem" }}
@@ -173,7 +174,7 @@ const Search = () => {
                     </Stack>{" "}
                     <Stack>
                       <Skeleton
-                        width="70vw"
+                        width="100vw"
                         height={30}
                         variant="text"
                         sx={{ fontSize: "1rem" }}
@@ -181,7 +182,7 @@ const Search = () => {
                     </Stack>{" "}
                     <Stack>
                       <Skeleton
-                        width="70vw"
+                        width="100vw"
                         height={30}
                         variant="text"
                         sx={{ fontSize: "1rem" }}
@@ -216,6 +217,7 @@ const Search = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 

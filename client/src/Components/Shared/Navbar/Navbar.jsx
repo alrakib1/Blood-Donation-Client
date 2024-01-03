@@ -119,16 +119,16 @@ const Navbar = () => {
               tabIndex={0}
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#8B0000] rounded-box w-52"
             >
-              <li className="hover:bg-blue-900 rounded-md ">
-                <Link to="/dashboard/profile" className="justify-between">
+              <li className="rounded-md ">
+                <Link to="/dashboard/profile">
                   Profile
                 </Link>
               </li>
-              <li className="border-b-2 border-white bg-white"></li>
-              <li>
+         
+              <li className=" border-t-2 ">
                 <p
                   onClick={() => logout()}
-                  className="hover:bg-red-500 hover:text-white"
+                  className="hover:bg-white hover:text-red-950"
                 >
                   Logout
                 </p>
