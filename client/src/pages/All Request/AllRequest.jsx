@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
-
-
+import { useState } from "react";
 
 const AllRequest = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,6 +17,17 @@ const AllRequest = () => {
     },
   });
 
+  const [selectedFilter, setSelectedFilter] = useState("");
+
+  const filteredRequests =
+    selectedFilter === ""
+      ? requests
+      : requests.filter((request) => request.donationStatus === selectedFilter);
+
+  const handleSelect = (e) => {
+    setSelectedFilter(e.target.value);
+  };
+
   return (
     <div className=" max-w-screen-xl mx-auto my-10 border rounded-md px-5">
       <Helmet>
@@ -25,20 +35,33 @@ const AllRequest = () => {
       </Helmet>
 
       <div className="text-white">
-        <h3 className="text-2xl font-semibold text-center py-10">
-          All Requests
-        </h3>
+        <div className="flex justify-between items-center gap-5">
+          <h3 className="text-2xl font-semibold text-center py-10">
+            All Requests
+          </h3>
+          <div className="text-base">
+            <select
+              onChange={handleSelect}
+              className=" py-1 px-1 rounded-md border w-full max-w-xs bg-[#8B0000]"
+            >
+              <option value="">All</option>
+              <option value="inprogress">Inprogress</option>
+              <option value="canceled">Canceled</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
         <div className="overflow-x-auto">
           <table className="table table-xs mb-7">
             <thead>
               <>
                 {isLoading ? (
                   <Skeleton
-                  width="100vw"
-                  height={30}
-                  variant="text"
-                  sx={{ fontSize: "1rem" }}
-                />
+                    width="100vw"
+                    height={30}
+                    variant="text"
+                    sx={{ fontSize: "1rem" }}
+                  />
                 ) : (
                   <>
                     <tr className="text-white">
@@ -212,7 +235,7 @@ const AllRequest = () => {
                 </Stack>
               ) : (
                 <>
-                  {requests.map((request, index) => (
+                  {filteredRequests.map((request, index) => (
                     <tr key={request._id}>
                       <th>{index + 1}</th>
                       <td>{request.recipientName}</td>

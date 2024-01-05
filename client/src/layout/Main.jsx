@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div className="bg-gradient-to-r from-teal-500 to-teal-900  font-Font-Nunito">
       <Navbar></Navbar>
-      <div className=" min-h-[calc(100vh-230px)] flex justify-center items-center">
+      <div className=" min-h-[calc(100vh-220px)] flex justify-center items-center">
         <Outlet />
       </div>
       <Footer />
