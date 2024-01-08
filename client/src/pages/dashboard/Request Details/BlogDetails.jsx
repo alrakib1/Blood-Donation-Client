@@ -42,7 +42,7 @@ const BlogDetails = () => {
         {" "}
         <img className="min-w-[320px] mx-auto md:min-w-[400px] md:min-h-[250px] lg:min-w-[640px] lg:min-h-[336px] max-w-[320px] md:max-w-[400px] md:max-h-[250px] lg:max-w-[640px] lg:max-h-[336px]" src={blog.image} alt={blog.title} />
       </div>
-      <p className="text-base p-5">{HTMLReactParser(blog?.content?.content)}</p>
+      <p className="text-base p-5 overflow-x-auto">{HTMLReactParser(blog?.content?.content)}</p>
     </div>
   );
 };

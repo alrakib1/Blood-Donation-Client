@@ -59,15 +59,32 @@ const ContentManagement = () => {
     }
   };
 
+
+// const handleUnpublished = async (id)=>{
+//   const res = await  axiosSecure.patch(`/blog/${id}`);
+//   if (res.data.modifiedCount > 0) {
+//     refetch();
+//     Swal.fire({
+//       position: "center",
+//       icon: "success",
+//       title: "Your blog has been unpublished",
+//       showConfirmButton: false,
+//       timer: 1500,
+//     });
+//   }
+// }
+
+
+
   return (
-    <div>
+    <div className="bg-red-400 px-2 py-2 rounded-md">
       <Helmet>
         <title>LifeFlowDonor |Content Management</title>
       </Helmet>
 
       <div className="flex justify-end">
         <Link to="/dashboard/content-management/add-blog">
-          <button className="btn btn-error text-white">Add blog</button>
+          <button className="px-2 py-1 transition hover:bg-yellow-600 bg-[#8B0000] rounded-md text-white">Add blog</button>
         </Link>
       </div>
 

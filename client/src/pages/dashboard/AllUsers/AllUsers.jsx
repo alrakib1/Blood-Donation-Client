@@ -7,7 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 
 const AllUsers = () => {
   const { users, refetch } = useUsers();
- 
+
   const [status, setStatus] = useState("");
   const axiosSecure = useAxiosSecure();
 
@@ -39,7 +39,7 @@ const AllUsers = () => {
     }
   };
 
-  const handleVolunteer =(id) => {
+  const handleVolunteer = (id) => {
     Swal.fire({
       title: "Do you want to make this user a volunteer?",
       text: "You won't be able to revert this!",
@@ -91,8 +91,7 @@ const AllUsers = () => {
     });
   };
 
-  const handleUserDelete= (id) => {
-    
+  const handleUserDelete = (id) => {
     Swal.fire({
       title: "Do you want to delete this user?",
       text: "You won't be able to revert this!",
@@ -122,14 +121,17 @@ const AllUsers = () => {
   const filteredUsers = users.filter(
     (user) => status === "" || user.status === status
   );
-// console.log(filteredUsers)
+  // console.log(filteredUsers)
 
   return (
     <div>
       <h3 className="mt-10 mb-10 text-2xl font-bold text-center">All Users</h3>
       <div className="mb-10">
-        <select  value={status}
-          onChange={(e) => setStatus(e.target.value)} className="select select-bordered w-full max-w-xs">
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          className="select select-bordered w-full max-w-xs"
+        >
           <option value="">All</option>
           <option value="active">Active</option>
           <option value="blocked">Blocked</option>
@@ -203,17 +205,21 @@ const AllUsers = () => {
                   </button>
                 </td>
 
-               
-                  <td>
-                    <button
-                      className="btn btn-ghost btn-xs"
-                      onClick={() => handleAdmin(user._id)}
-                    >
-                      Make Admin
-                    </button>
-                  </td>
-         
-            <td onClick={()=>handleUserDelete(user._id)} className="btn btn-md text-xl hover:bg-red-500 mt-5" ><AiOutlineDelete/></td>
+                <td>
+                  <button
+                    className="btn btn-ghost btn-xs"
+                    onClick={() => handleAdmin(user._id)}
+                  >
+                    Make Admin
+                  </button>
+                </td>
+
+                <td
+                  onClick={() => handleUserDelete(user._id)}
+                  className="btn btn-md text-xl hover:bg-[#8B0000] mt-5"
+                >
+                  <AiOutlineDelete />
+                </td>
               </tr>
             ))}
           </tbody>

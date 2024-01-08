@@ -43,7 +43,7 @@ const AdminHome = () => {
               <p className="text-xl">{totalData.users}</p>
             </div>
           </div>
-          <div className="card md:w-90  bg-red-500 shadow-xl">
+          <div className="card md:w-90  bg-[#8B0000] shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
                 Total Requests <FaCodePullRequest className="text-3xl" />

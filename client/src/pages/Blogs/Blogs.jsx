@@ -9,7 +9,7 @@ const Blogs = () => {
   const { blogs, isLoading } = useShowBlogs();
 
   return (
-    <div>
+    <div className="mb-10">
       <Helmet>
         <title>LifeFlowDonor | Blogs</title>
       </Helmet>

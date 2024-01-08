@@ -14,12 +14,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { FaRegPenToSquare } from "react-icons/fa6";
+import { FaBlogger, FaUsers } from "react-icons/fa6";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useCurrentUser from "../hooks/useCurrentUser";
-
+import { FaHistory } from "react-icons/fa";
+import { IoIosCreate } from "react-icons/io";
+import { BsPersonFillDown } from "react-icons/bs";
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -133,7 +135,7 @@ function Dashboard(props) {
                     <ListItemButton>
                       <div>
                         <ListItemIcon>
-                          <VscGitPullRequestGoToChanges className="text-xl" />
+                          <FaUsers  className="text-xl"/>
                         </ListItemIcon>
                       </div>
                       <h1>All Users</h1>
@@ -165,7 +167,7 @@ function Dashboard(props) {
                     <ListItemButton>
                       <div>
                         <ListItemIcon>
-                          <VscGitPullRequestGoToChanges className="text-xl" />
+                        <FaBlogger className="text-xl" />
                         </ListItemIcon>
                       </div>
                       <h1>Content Management</h1>
@@ -199,7 +201,7 @@ function Dashboard(props) {
                 <ListItemButton>
                   <div>
                     <ListItemIcon>
-                      <FaRegPenToSquare className="text-xl" />
+                    <BsPersonFillDown className="text-xl" />
                     </ListItemIcon>
                   </div>
                   <h1>My Requests</h1>
@@ -215,7 +217,7 @@ function Dashboard(props) {
                 <ListItemButton>
                   <div>
                     <ListItemIcon>
-                      <VscGitPullRequestGoToChanges className="text-xl" />
+                      <IoIosCreate className="text-xl" />
                     </ListItemIcon>
                   </div>
                   <h1>Create Request</h1>
@@ -232,7 +234,7 @@ function Dashboard(props) {
             <ListItemButton>
               <div>
                 <ListItemIcon>
-                  <FaRegPenToSquare className="text-xl" />
+                  <FaHistory className="text-xl"/>
                 </ListItemIcon>
               </div>
               <h1>Donation History</h1>
@@ -258,7 +260,7 @@ function Dashboard(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", backgroundColor: '#147C72' }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -267,7 +269,7 @@ function Dashboard(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar className="bg-red-500">
+        <Toolbar className="bg-[#8B0000]">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -278,7 +280,7 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            <Link to='/'> LifeFlowDonor</Link>
+            <Link to="/"> LifeFlowDonor</Link>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -323,7 +325,7 @@ function Dashboard(props) {
       <Box
         component="main"
         sx={{
-          background: '#147C72',
+          background: "#147C72",
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -331,8 +333,7 @@ function Dashboard(props) {
       >
         <Toolbar />
         <div className="min-h-screen">
-        <Outlet></Outlet>
-
+          <Outlet></Outlet>
         </div>
       </Box>
     </Box>

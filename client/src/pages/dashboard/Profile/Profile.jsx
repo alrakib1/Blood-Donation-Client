@@ -137,7 +137,7 @@ const Profile = () => {
         <section className="mt-4 ">
           {currentUser.map((user) => (
             <div key={user._id}>
-              <div className="bg-red-500 shadow-lg px-3 rounded-md text-sm">
+              <div className="bg-[#8B0000] shadow-lg px-3 rounded-md text-sm">
                 <div className="p-2 py-6">
                   <h3 className="text-2xl  mb-2 text-center font-bold text-white">
                     Update your profile
@@ -221,7 +221,7 @@ const Profile = () => {
                     <br />
                     <button
                       type="submit"
-                      className="text-red-500 shadow-lg px-2 py-1 rounded-md transition delay-200 bg-white border-0 mb-2 hover:bg-blue-500 hover:text-white"
+                      className="text-red-500 shadow-lg px-2 py-1 rounded-md transition delay-200 bg-white border-0 mb-2 hover:bg-[#147C72] hover:text-white"
                     >
                       Update
                     </button>

@@ -38,6 +38,7 @@ const AddBlog = () => {
         image: thumbnail,
         content: { content },
         status: "draft",
+        time:  new Date(),
       };
 
       const result = await axiosSecure.post("/addBlog", blogData);
@@ -59,9 +60,11 @@ const AddBlog = () => {
       <Helmet>
         <title>LifeFlowDonor | Add Blog</title>
       </Helmet>
-      <h2 className="text-center text-xl font-bold my-5">Add blog</h2>
+      <h2 className="text-center text-xl font-bold my-5 text-white">
+        Write A Blog
+      </h2>
       <div>
-        <div className="mb-10 bg-red-500 shadow-lg">
+        <div className="mb-10 bg-[#8B0000] shadow-lg rounded-md">
           <div className="p-4">
             <form onSubmit={handleSubmit(onSubmit)}>
               <p className="text-sm font-semibold mb-2 text-white">Title*</p>
@@ -93,7 +96,7 @@ const AddBlog = () => {
               <br />
               <button
                 type="submit"
-                className="text-red-500 shadow-lg btn bg-white border-0 mb-5 hover:bg-blue-500 hover:text-white"
+                className="text-red-500 shadow-lg  px-2 py-1 transition delay-500 rounded-md bg-white border-0 mb-5 hover:bg-[#147C72] hover:text-white"
               >
                 Add Blog
               </button>

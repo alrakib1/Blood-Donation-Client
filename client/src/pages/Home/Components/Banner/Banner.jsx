@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <div
       className="bg-no-repeat bg-center bg-cover min-h-screen flex justify-center items-center mx-auto font-Font-Play"
-      style={{ backgroundImage: `url(${background})`, opacity: 0.8, }}
+      style={{ backgroundImage: `url(${background})`, opacity: 0.8 }}
     >
       <div className="space-y-5">
         <h2 className="md:text-6xl text-3xl font-semibold px-2 text-center text-green-700 bg-opacity-100 opacity-100">
@@ -19,7 +19,7 @@ const Banner = () => {
             {!user && (
               <Link to="/signup">
                 {" "}
-                <button className="btn bg-red-500 text-white hover:bg-blue-500 border-0">
+                <button className="btn bg-[#8B0000] text-white hover:bg-[#147C72] border-0">
                   Join As A Donor
                 </button>
               </Link>

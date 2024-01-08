@@ -52,7 +52,7 @@ const AllRequest = () => {
           </select>
         </div>
       </div>
-      <div className="overflow-hidden">
+      <div className="overflow-x-auto">
         <table className="table table-xs mb-7 w-full">
           <thead>
             <>
@@ -96,7 +96,6 @@ const AllRequest = () => {
                     <td>{request.donationStatus}</td>
 
                     <Link to={`/dashboard/details/${request._id}`}>
-                      {/* You can add any content or styling for the link */}
                     </Link>
                   </tr>
                 ))}
