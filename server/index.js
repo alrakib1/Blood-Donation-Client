@@ -348,7 +348,7 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/blogs", verifyToken, async (req, res) => {
+    app.get("/blogs", async (req, res) => {
       const result = await blogCollection.find().toArray();
       res.send(result);
     });
