@@ -348,7 +348,7 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/blogs", async (req, res) => {
+    app.get("/blogs",verifyToken, async (req, res) => {
       const result = await blogCollection.find().toArray();
       res.send(result);
     });
@@ -481,5 +481,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`LifeFlowDonor server running on port ${port}`);
+  console.log(`LifeFlowDonor server running on port : http://localhost:${port}`);
 });
