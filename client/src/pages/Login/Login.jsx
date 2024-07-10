@@ -4,8 +4,6 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import Container from "../../Components/Shared/Container";
 
-
-
 const Login = () => {
   const { login } = useAuth();
 
@@ -55,13 +53,13 @@ const Login = () => {
       <div className="py-10 px-5 min-h-[calc(100vh-220px)] flex justify-center items-center">
         <div className="md:w-2/4 lg:w-5/12 xl:w-1/4 mx-auto">
           <div className="border rounded-md shadow-xl shadow-red-900 py-10">
-            <h1 className="text-center text-white font-semibold text-2xl">
+            <h1 className="text-center text-black font-semibold text-2xl">
               Log in here and join us
             </h1>
             <form className="card-body text-black" onSubmit={handleLogin}>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Email</span>
+                  <span className="label-text text-black">Email</span>
                 </label>
                 <input
                   type="email"
@@ -73,7 +71,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Password</span>
+                  <span className="label-text text-black">Password</span>
                 </label>
                 <input
                   name="password"
@@ -91,13 +89,13 @@ const Login = () => {
               <div className="form-control mt-6 w-1/4 mx-auto">
                 <button
                   type="submit"
-                  className="rounded-md transition delay-200 bg-white text-red-500 hover:bg-red-950 py-1 hover:text-white border-0"
+                  className="rounded-md transition delay-200 bg-white text-red-500 hover:bg-red-950 py-1 hover:text-black border-0"
                 >
                   Login
                 </button>
               </div>
             </form>
-            <p className="text-white font-semibold text-sm text-center">
+            <p className="text-black font-semibold text-sm text-center">
               Do not have an account ?{" "}
               <Link to="/signup">
                 <span className="hover:text-red-900">Signup</span>

@@ -67,7 +67,7 @@ const Description = () => {
           <p>
             <Link
               to="/donate"
-              className="bg-[#8B0000] p-2 text-white hover:bg-green-500 hover:text-white "
+              className="bg-[#8B0000] p-2 text-black hover:bg-green-500 hover:text-black "
             >
               Donate Now and Be a Lifesaver! 🌟
             </Link>

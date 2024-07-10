@@ -33,7 +33,7 @@ const AdminHome = () => {
       <h1 className="text-2xl font-semibold">Welcome {user?.displayName}</h1>
       <div className="mt-10">
         {/* cards */}
-        <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-5 text-white">
+        <div className="grid grid-cols-1 md:grid-col-2 lg:grid-cols-4 gap-5 text-black">
           <div className="card md:w-90 bg-blue-500 shadow-xl">
             <div className="card-body">
               <h2 className="card-title text-2xl">
@@ -54,7 +54,7 @@ const AdminHome = () => {
           <div className="card md:w-90 bg-violet-500 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
-                Total Donation Count <TbDiscountCheck className="text-3xl" />
+                Total Funding Count <TbDiscountCheck className="text-3xl" />
               </h2>
               <p className="text-xl">{totalData.donationsCount}</p>
             </div>
@@ -62,7 +62,7 @@ const AdminHome = () => {
           <div className="card md:w-90 bg-green-500 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">
-                Total Donations Collected{" "}
+                Total Funding Collected{" "}
                 <FaHandHoldingDollar className="text-3xl" />
               </h2>
               <p className="text-xl">$ {total}</p>

@@ -60,11 +60,11 @@ const UpdateRequest = () => {
       <section>
         <div className="bg-violet-500 shadow-lg">
           <div className="p-4">
-            <h3 className="text-xl lg:text-3xl mb-1 text-center font-bold text-white">
+            <h3 className="text-xl lg:text-3xl mb-1 text-center font-bold text-black">
               Update the Request
             </h3>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <p className="text-sm font-semibold mb-1 mt-1 text-white">
+              <p className="text-sm font-semibold mb-1 mt-1 text-black">
                 Recipient Name*
               </p>
               <input
@@ -76,7 +76,7 @@ const UpdateRequest = () => {
 
               <div className="flex gap-10 my-5">
                 <div className="md:w-1/2">
-                  <p className="text-sm font-semibold mb-1 text-white">
+                  <p className="text-sm font-semibold mb-1 text-black">
                     Required Blood Group*
                   </p>
                   <select
@@ -97,7 +97,7 @@ const UpdateRequest = () => {
               </div>
               <div className="flex flex-col md:flex-row gap-5">
                 <div className="md:w-1/2">
-                  <p className="text-sm font-semibold mb-1 text-white">
+                  <p className="text-sm font-semibold mb-1 text-black">
                     Upazila*
                   </p>
                   <select
@@ -113,7 +113,7 @@ const UpdateRequest = () => {
                   </select>
                 </div>
                 <div className="md:w-1/2">
-                  <p className="text-sm font-semibold mb-1 text-white">
+                  <p className="text-sm font-semibold mb-1 text-black">
                     District*
                   </p>
                   <select
@@ -129,7 +129,7 @@ const UpdateRequest = () => {
                   </select>
                 </div>
               </div>
-              <p className="text-sm font-semibold mb-1 mt-4 text-white">
+              <p className="text-sm font-semibold mb-1 mt-4 text-black">
                 Hospital Name*
               </p>
               <input
@@ -139,7 +139,7 @@ const UpdateRequest = () => {
                 className="input input-bordered md:w-1/2"
               />
               <br />
-              <p className="text-sm font-semibold mb-1 mt-4 text-white">
+              <p className="text-sm font-semibold mb-1 mt-4 text-black">
                 Full Address*
               </p>
               <input
@@ -149,7 +149,7 @@ const UpdateRequest = () => {
                 className="input input-bordered md:w-1/2"
               />
               <br />
-              <p className="text-sm font-semibold mb-1 mt-4 text-white">
+              <p className="text-sm font-semibold mb-1 mt-4 text-black">
                 Donation Date*
               </p>
               <input
@@ -160,7 +160,7 @@ const UpdateRequest = () => {
               />
 
               <br />
-              <p className="text-sm font-semibold mb-1 mt-4 text-white">
+              <p className="text-sm font-semibold mb-1 mt-4 text-black">
                 Donation Time*
               </p>
               <input
@@ -170,7 +170,7 @@ const UpdateRequest = () => {
                 className="input input-bordered md:w-1/2"
               />
               <br />
-              <p className="text-sm font-semibold mb-1 mt-4 text-white">
+              <p className="text-sm font-semibold mb-1 mt-4 text-black">
                 Request message*
               </p>
               <textarea
@@ -182,7 +182,7 @@ const UpdateRequest = () => {
               <br />
               <button
                 type="submit"
-                className="text-violet-500 shadow-lg btn bg-white border-0 mb-2 mt-2 hover:bg-green-500 hover:text-white"
+                className="text-violet-500 shadow-lg btn bg-white border-0 mb-2 mt-2 hover:bg-green-500 hover:text-black"
               >
                 Update
               </button>

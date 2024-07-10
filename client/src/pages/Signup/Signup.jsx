@@ -117,18 +117,18 @@ const Signup = () => {
         <div className="md:w-2/4 lg:w-5/12 xl:w-1/4 mx-auto">
           <div className="mb-10 border rounded-md shadow-red-950 shadow-xl">
             <div className="p-4">
-              <h3 className="text-2xl mb-4 text-center font-semibold text-white">
+              <h3 className="text-2xl mb-4 text-center font-semibold text-black">
                 Join us and help us to save lives
               </h3>
               <form className="text-black" onSubmit={handleSubmit(onSubmit)}>
-                <p className="text-sm font-semibold mb-2 text-white">Name*</p>
+                <p className="text-sm font-semibold mb-2 text-black">Name*</p>
                 <input
                   {...register("name", { required: true })}
                   type="text"
                   placeholder="Your Name"
                   className=" py-2 px-2 rounded-md  input-bordered md:w-1/2"
                 />
-                <p className="text-sm font-semibold mt-5 mb-2 text-white">
+                <p className="text-sm font-semibold mt-5 mb-2 text-black">
                   Email
                 </p>
                 <input
@@ -138,7 +138,7 @@ const Signup = () => {
                   className=" py-2 px-2 rounded-md  input-bordered md:w-1/2"
                 />
 
-                <p className="text-sm font-semibold mt-5 mb-2 text-white">
+                <p className="text-sm font-semibold mt-5 mb-2 text-black">
                   Password
                 </p>
                 <input
@@ -146,7 +146,7 @@ const Signup = () => {
                   type="password"
                   className=" py-2 px-2 rounded-md  input-bordered md:w-1/2"
                 />
-                <p className="text-sm font-semibold mt-5 mb-2 text-white">
+                <p className="text-sm font-semibold mt-5 mb-2 text-black">
                   Confirm Password
                 </p>
                 <input
@@ -155,24 +155,24 @@ const Signup = () => {
                   className=" py-2 px-2 rounded-md  input-bordered md:w-1/2"
                 />
 
-                <p className="text-sm font-semibold mt-5 mb-2 text-white">
+                <p className="text-sm font-semibold mt-5 mb-2 text-black">
                   Your Photo*
                 </p>
 
                 <input
                   {...register("image", { required: true })}
                   type="file"
-                  className="border rounded-md file-input-bordered px-2 py-2 text-white w-1/2 mb-4 max-w-xs"
+                  className="border rounded-md file-input-bordered px-2 py-2 text-black w-1/2 mb-4 max-w-xs"
                 />
                 <div className="flex gap-10 my-5">
                   <div className="md:w-1/2">
-                    <p className="text-sm font-semibold mb-2 text-white">
+                    <p className="text-sm font-semibold mb-2 text-black">
                       Blood Group*
                     </p>
                     <select
                       defaultValue="default"
                       {...register("group", { required: true })}
-                      className="py-2 px-2 rounded-md select-bordered bg-red-800 text-white w-full"
+                      className="py-2 px-2 rounded-md select-bordered bg-red-800 text-black w-full"
                     >
                       <option disabled value="default">
                         Select Your Blood Group
@@ -190,7 +190,7 @@ const Signup = () => {
                 </div>
                 <div className="flex flex-col md:flex-row gap-5">
                   <div className="md:w-1/2">
-                    <p className="text-sm font-semibold mb-2 text-white">
+                    <p className="text-sm font-semibold mb-2 text-black">
                       Upazila*
                     </p>
                     <select
@@ -205,7 +205,7 @@ const Signup = () => {
                     </select>
                   </div>
                   <div className="md:w-1/2">
-                    <p className="text-sm font-semibold mb-2 text-white">
+                    <p className="text-sm font-semibold mb-2 text-black">
                       District*
                     </p>
                     <select
@@ -224,12 +224,12 @@ const Signup = () => {
                 <br />
                 <button
                   type="submit"
-                  className="text-red-500 shadow-lg py-1 transition delay-200 px-2 rounded-md bg-white border-0 mb-5 hover:bg-[#147C72] hover:text-white"
+                  className="text-red-500 shadow-lg py-1 transition delay-200 px-2 rounded-md bg-white border-0 mb-5 hover:bg-[#147C72] hover:text-black"
                 >
                   Sign Up
                 </button>
               </form>
-              <p className="text-white font-semibold text-xl text-center">
+              <p className="text-black font-semibold text-xl text-center">
                 Already Have an account ?{" "}
                 <Link to="/login">
                   <span className="hover:text-blue-500">Log in here</span>

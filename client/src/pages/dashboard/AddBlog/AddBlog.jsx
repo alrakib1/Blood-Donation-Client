@@ -38,7 +38,7 @@ const AddBlog = () => {
         image: thumbnail,
         content: { content },
         status: "draft",
-        time:  new Date(),
+        time: new Date(),
       };
 
       const result = await axiosSecure.post("/addBlog", blogData);
@@ -60,14 +60,14 @@ const AddBlog = () => {
       <Helmet>
         <title>LifeFlowDonor | Add Blog</title>
       </Helmet>
-      <h2 className="text-center text-xl font-bold my-5 text-white">
+      <h2 className="text-center text-xl font-bold my-5 text-black">
         Write A Blog
       </h2>
       <div>
         <div className="mb-10 bg-[#8B0000] shadow-lg rounded-md">
           <div className="p-4">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <p className="text-sm font-semibold mb-2 text-white">Title*</p>
+              <p className="text-sm font-semibold mb-2 text-black">Title*</p>
               <input
                 {...register("title", { required: true })}
                 type="text"
@@ -75,7 +75,7 @@ const AddBlog = () => {
                 className="input input-bordered md:w-1/2"
               />
 
-              <p className="text-sm font-semibold mt-5 mb-2 text-white">
+              <p className="text-sm font-semibold mt-5 mb-2 text-black">
                 Thumbnail Image*
               </p>
 
@@ -84,7 +84,7 @@ const AddBlog = () => {
                 type="file"
                 className="file-input border-0 file-input-bordered file-input-sm w-full mb-4 max-w-xs"
               />
-              <p className="text-sm font-semibold mt-5 mb-2 text-white">
+              <p className="text-sm font-semibold mt-5 mb-2 text-black">
                 Content*
               </p>
 
@@ -96,7 +96,7 @@ const AddBlog = () => {
               <br />
               <button
                 type="submit"
-                className="text-red-500 shadow-lg  px-2 py-1 transition delay-500 rounded-md bg-white border-0 mb-5 hover:bg-[#147C72] hover:text-white"
+                className="text-red-500 shadow-lg  px-2 py-1 transition delay-500 rounded-md bg-white border-0 mb-5 hover:bg-[#147C72] hover:text-black"
               >
                 Add Blog
               </button>

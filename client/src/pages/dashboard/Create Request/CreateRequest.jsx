@@ -83,18 +83,18 @@ const CreateRequest = () => {
           <section>
             <div className="bg-blue-500 shadow-lg">
               <div className="p-4">
-                <h3 className="text-xl lg:text-3xl mb-2 text-center font-bold text-white">
+                <h3 className="text-xl lg:text-3xl mb-2 text-center font-bold text-black">
                   Create A request for Donor
                 </h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <p className="text-xl font-semibold mb-1 text-white">
+                  <p className="text-xl font-semibold mb-1 text-black">
                     Requester Name : {user?.displayName}
                   </p>
 
-                  <p className="text-xl font-semibold mt-5 mb-1 text-white">
+                  <p className="text-xl font-semibold mt-5 mb-1 text-black">
                     Requester Email : {user?.email}
                   </p>
-                  <p className="text-sm font-semibold mb-1 mt-5 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-5 text-black">
                     Recipient Name*
                   </p>
                   <input
@@ -106,7 +106,7 @@ const CreateRequest = () => {
 
                   <div className="flex gap-10 my-5">
                     <div className="md:w-1/2">
-                      <p className="text-sm font-semibold mb-1 text-white">
+                      <p className="text-sm font-semibold mb-1 text-black">
                         Required Blood Group*
                       </p>
                       <select
@@ -126,7 +126,7 @@ const CreateRequest = () => {
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
                     <div className="md:w-1/2">
-                      <p className="text-sm font-semibold mb-1 text-white">
+                      <p className="text-sm font-semibold mb-1 text-black">
                         Upazila*
                       </p>
                       <select
@@ -141,7 +141,7 @@ const CreateRequest = () => {
                       </select>
                     </div>
                     <div className="md:w-1/2">
-                      <p className="text-sm font-semibold mb-1 text-white">
+                      <p className="text-sm font-semibold mb-1 text-black">
                         District*
                       </p>
                       <select
@@ -156,7 +156,7 @@ const CreateRequest = () => {
                       </select>
                     </div>
                   </div>
-                  <p className="text-sm font-semibold mb-1 mt-4 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-4 text-black">
                     Hospital Name*
                   </p>
                   <input
@@ -165,7 +165,7 @@ const CreateRequest = () => {
                     className="input input-bordered md:w-1/2"
                   />
                   <br />
-                  <p className="text-sm font-semibold mb-1 mt-4 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-4 text-black">
                     Full Address*
                   </p>
                   <input
@@ -174,7 +174,7 @@ const CreateRequest = () => {
                     className="input input-bordered md:w-1/2"
                   />
                   <br />
-                  <p className="text-sm font-semibold mb-1 mt-4 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-4 text-black">
                     Donation Date*
                   </p>
                   <input
@@ -184,7 +184,7 @@ const CreateRequest = () => {
                   />
 
                   <br />
-                  <p className="text-sm font-semibold mb-1 mt-4 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-4 text-black">
                     Donation Time*
                   </p>
                   <input
@@ -193,7 +193,7 @@ const CreateRequest = () => {
                     className="input input-bordered md:w-1/2"
                   />
                   <br />
-                  <p className="text-sm font-semibold mb-1 mt-4 text-white">
+                  <p className="text-sm font-semibold mb-1 mt-4 text-black">
                     Request message*
                   </p>
                   <textarea
@@ -205,7 +205,7 @@ const CreateRequest = () => {
                   <br />
                   <button
                     type="submit"
-                    className="text-blue-500 shadow-lg btn bg-white border-0 mb-2 mt-5 hover:bg-green-500 hover:text-white"
+                    className="text-blue-500 shadow-lg btn bg-white border-0 mb-2 mt-5 hover:bg-green-500 hover:text-black"
                   >
                     Add A Request
                   </button>

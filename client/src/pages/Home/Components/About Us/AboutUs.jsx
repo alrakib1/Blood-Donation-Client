@@ -1,7 +1,7 @@
 const AboutUs = () => {
   return (
     <div>
-      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
+      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-black">
         <input type="radio" name="my-accordion-1" />
         <div className="collapse-title text-xl font-medium">
           About LifeFlowDonor
@@ -10,7 +10,7 @@ const AboutUs = () => {
           <p>Welcome to LifeFlowDonor!</p>
         </div>
       </div>
-      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
+      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-black">
         <input type="radio" name="my-accordion-1" />
         <div className="collapse-title text-xl font-medium">Our Mission</div>
         <div className="collapse-content">
@@ -22,7 +22,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
+      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-black">
         <input type="radio" name="my-accordion-1" />
         <div className="collapse-title text-xl font-medium">Who We Are</div>
         <div className="collapse-content">
@@ -35,7 +35,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-white">
+      <div className="collapse border-b-2 bg-gradient-to-r from-teal-500 to-teal-900 text-black">
         <input type="radio" name="my-accordion-1" />
         <div className="collapse-title text-xl font-medium">
           Why Donate Blood?

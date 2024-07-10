@@ -7,7 +7,11 @@ const jwt = require("jsonwebtoken");
 const stripe = require("stripe")(process.env.SECRET_KEY_STRIPE);
 
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -348,7 +352,7 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/blogs",verifyToken, async (req, res) => {
+    app.get("/blogs", verifyToken, async (req, res) => {
       const result = await blogCollection.find().toArray();
       res.send(result);
     });
@@ -481,5 +485,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`LifeFlowDonor server running on port : http://localhost:${port}`);
+  console.log(
+    `LifeFlowDonor server running on port : http://localhost:${port}`
+  );
 });

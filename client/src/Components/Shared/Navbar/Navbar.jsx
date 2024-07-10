@@ -7,11 +7,15 @@ import useAuth from "../../../hooks/useAuth";
 import "./Navbar.css";
 import useAdmin from "../../../hooks/useAdmin";
 import useCurrentUser from "../../../hooks/useCurrentUser";
+
+import logo2 from '../../../assets/Logo.png';
+
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [isAdmin] = useAdmin();
   const { currentUser } = useCurrentUser();
   const role = currentUser[0]?.role;
+
 
   const navLinks = (
     <>
@@ -61,7 +65,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#8B0000]  text-white font-semibold">
+    <div className="navbar font-semibold">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -82,7 +86,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#8B0000] rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52"
           >
             {navLinks}
           </ul>
@@ -91,12 +95,7 @@ const Navbar = () => {
           to="/"
           className="flex items-center justify-center-center gap-2 text-xl"
         >
-          <img
-            className="w-6"
-            src="https://i.ibb.co/MZbwWpp/205916-removebg-preview.png"
-            alt=""
-          />
-          LifeFlowDonor
+         <img src={logo2} alt="website-logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -117,7 +116,7 @@ const Navbar = () => {
 
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#8B0000] rounded-box w-52"
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-52 bg-white"
             >
               <li className="rounded-md ">
                 <Link to="/dashboard/profile">
