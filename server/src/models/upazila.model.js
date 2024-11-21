@@ -2,8 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const upazilaSchema = new Schema({
   district_id: {
-    type: Schema.Types.ObjectId,
-    ref: "District",
+    type: String,
     required: true,
   },
   name: {
